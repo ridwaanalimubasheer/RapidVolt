@@ -1,0 +1,5 @@
+lighting controls|100
+cat 6 cable|150
+motion sensors|100
+smart switch|200
+led panel|80

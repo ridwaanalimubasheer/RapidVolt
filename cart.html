@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Rapid Volt</title>
+<link rel="shortcut icon" type="image/png" href="assets/images/rapidvolt.png">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand font-weight-bold" href="#">Rapid Volt</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMain">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navMain">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+      <li class="nav-item">
+        <a class="nav-link text-success" href="https://wa.me/971501234567" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= SHOP ================= -->
+<section class="container my-5">
+  <h2 class="text-center mb-4">Rapid Volt – Cabling Products</h2>
+
+  <div class="row" id="product-list"></div>
+
+  <hr>
+
+  <h4>Cart</h4>
+  <ul id="cart-items"></ul>
+  <p><strong>Total: AED <span id="total">0</span></strong></p>
+
+  <a id="whatsapp-link" class="btn btn-success" target="_blank">
+    Order via WhatsApp
+  </a>
+</section>
+
+<footer class="bg-dark text-white text-center p-3">
+  © 2026 Rapid Volt
+</footer>
+
+<script src="assets/js/jquery-1.12.0.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script>
+let cart = [];
+let total = 0;
+
+// LOAD PRODUCTS FROM TXT FILE
+fetch("products.txt")
+  .then(response => response.text())
+  .then(text => {
+    const products = text.split("\n");
+    const container = document.getElementById("product-list");
+
+    products.forEach((line, index) => {
+      if (!line.trim()) return;
+
+      const parts = line.split("|");
+      const name = parts[0];
+      const price = parts[1];
+
+      container.innerHTML += `
+        <div class="col-md-4 mb-3">
+          <div class="card p-3">
+            <h4>${name}</h4>
+            <p>AED ${price}</p>
+            <input type="number" id="qty${index}" value="1" min="1" class="form-control mb-2">
+            <button class="btn btn-primary w-100"
+              onclick="addToCart('${name}', ${price}, document.getElementById('qty${index}').value)">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      `;
+    });
+  });
+
+// CART FUNCTIONS
+function addToCart(name, price, qty) {
+  qty = parseInt(qty);
+  const item = cart.find(p => p.name === name);
+
+  if (item) {
+    item.qty += qty;
+    item.price += price * qty;
+  } else {
+    cart.push({ name, qty, price: price * qty });
+  }
+  updateCart();
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCart();
+}
+
+function updateCart() {
+  const list = document.getElementById("cart-items");
+  list.innerHTML = "";
+  total = 0;
+
+  cart.forEach((item, i) => {
+    total += item.price;
+    list.innerHTML += `
+      <li>
+        ${item.name} x${item.qty} – AED ${item.price}
+        <button onclick="removeFromCart(${i})">Remove</button>
+      </li>
+    `;
+  });
+
+  document.getElementById("total").textContent = total;
+
+  let msg = "Hello, I want to order:%0A";
+  cart.forEach(i => msg += `- ${i.name} x${i.qty} (AED ${i.price})%0A`);
+  msg += `Total: AED ${total}`;
+
+  document.getElementById("whatsapp-link").href =
+    "https://wa.me/971501234567?text=" + msg;
+}
+</script>
+
+</body>
+</html>
