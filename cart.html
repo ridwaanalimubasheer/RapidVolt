@@ -75,26 +75,41 @@
 <script>
 let cart = [];
 let total = 0;
-
-// LOAD PRODUCTS FROM TXT FILE
 fetch("products.txt")
-  .then(response => response.text())
+  .then(res => res.text())
   .then(text => {
-    const products = text.split("\n");
+    const lines = text.split("\n");
     const container = document.getElementById("product-list");
 
-    products.forEach((line, index) => {
-      if (!line.trim()) return;
+    let category = "";
+    let index = 0;
 
+    lines.forEach(line => {
+      line = line.trim();
+      if (!line) return;
+
+      // CATEGORY
+      if (line.startsWith("#")) {
+        category = line.replace("#", "");
+        container.innerHTML += `
+          <div class="col-12">
+            <h3 class="mt-4 mb-3">${category}</h3>
+          </div>
+        `;
+        return;
+      }
+
+      // PRODUCT
       const parts = line.split("|");
-      const name = parts[0];
-      const price = parseFloat(parts[1].replace("AED", "").trim());
+      const name = parts[0].trim();
+      const price = parseFloat(parts[1].trim());
 
       container.innerHTML += `
-        <div class="col-md-4 mb-3">
+        <div class="col-md-4 mb-3 product-card">
           <div class="card p-3">
             <h4>${name}</h4>
-            <p>AED ${price}</p>
+            <small class="text-muted">${category}</small>
+            <p class="mt-2">AED ${price}</p>
             <input type="number" id="qty${index}" value="1" min="1" class="form-control mb-2">
             <button class="btn btn-primary w-100"
               onclick="addToCart('${name}', ${price}, document.getElementById('qty${index}').value)">
@@ -103,8 +118,10 @@ fetch("products.txt")
           </div>
         </div>
       `;
+      index++;
     });
   });
+
 
 // CART FUNCTIONS
 function addToCart(name, price, qty) {
@@ -164,4 +181,5 @@ function updateCart() {
 
 </body>
 </html>
+
 
