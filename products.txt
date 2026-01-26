@@ -3,3 +3,30 @@ cat 6 cable|150
 motion sensors|100
 smart switch|200
 led panel|80
+LED Bulb 9W | AED 8
+LED Tube Light 4ft | AED 18
+Ceiling LED Panel | AED 45
+Flood Light 50W | AED 60
+Emergency Light | AED 40
+
+Power Socket UK Type | AED 6
+Switch Button 1 Way | AED 5
+Plug Top 13A | AED 4
+Extension Cord 5m | AED 25
+Power Strip 4 Socket | AED 35
+
+Electrical Wire 1.5mm (per meter) | AED 2
+Electrical Wire 2.5mm (per meter) | AED 3
+LAN Cable (per meter) | AED 1.5
+HDMI Cable | AED 12
+
+Electrical Tester | AED 10
+Wire Cutter | AED 22
+Screwdriver Set | AED 30
+Digital Multimeter | AED 65
+
+Mini Inverter 600W | AED 210
+Voltage Stabilizer | AED 120
+UPS Battery 12V | AED 180
+
+
