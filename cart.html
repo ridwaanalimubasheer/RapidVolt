@@ -16,65 +16,92 @@
 
 <!-- ================= HEADER ================= -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand font-weight-bold" href="#">Rapid Volt</a>
+  <div class="container">
+    <a class="navbar-brand font-weight-bold" href="#">Rapid Volt</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMain">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navMain">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-      <li class="nav-item">
-        <a class="nav-link text-success" href="https://wa.me/971555778653" target="_blank">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-      </li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+        <li class="nav-item">
+          <a class="nav-link text-success font-weight-bold" href="https://wa.me/971555778653" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
-<!-- ================= SHOP ================= -->
+<!-- ================= SHOP SECTION ================= -->
 <section class="container my-5">
   <h2 class="text-center mb-4">Rapid Volt – Cabling Products</h2>
 
-  <div class="row" id="product-list"></div>
+  <!-- Search Bar Row -->
   <div class="row mb-4">
-  <div class="col-md-6 mx-auto">
-    <input
-      type="text"
-      id="search"
-      class="form-control"
-      placeholder="Search products..."
-      onkeyup="filterProducts()"
-    >
+    <div class="col-md-6 mx-auto">
+      <input
+        type="text"
+        id="search"
+        class="form-control form-control-lg"
+        placeholder="Search products..."
+        onkeyup="filterProducts()"
+      >
+    </div>
   </div>
-</div>
 
+  <!-- Dynamic Product List Container -->
+  <div class="row" id="product-list"></div>
 
-  <hr>
+  <hr class="my-5">
 
-  <h4>Cart</h4>
-  <ul id="cart-items"></ul>
-  <p><strong>Total: AED <span id="total">0</span></strong></p>
-
-  <a id="whatsapp-link" class="btn btn-success" target="_blank">
-    Order via WhatsApp
-  </a>
+  <!-- ================= CART SECTION ================= -->
+  <div class="row">
+    <div class="col-md-8 mx-auto bg-light p-4 rounded shadow-sm">
+      <h4 class="mb-3"><i class="fas fa-shopping-cart"></i> Your Cart</h4>
+      <ul id="cart-items" class="list-group mb-3">
+        <!-- Cart items render here -->
+      </ul>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="m-0">Total:</h5>
+        <h4 class="m-0 text-primary">AED <span id="total">0</span></h4>
+      </div>
+      <a id="whatsapp-link" class="btn btn-success btn-lg w-100 disabled" target="_blank" href="https://wa.me/971555778653">
+        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+      </a>
+    </div>
+  </div>
 </section>
 
-<footer class="bg-dark text-white text-center p-3">
+<!-- ================= FOOTER ================= -->
+<footer class="bg-dark text-white text-center p-3 mt-5">
   © 2026 Rapid Volt
 </footer>
 
+<!-- JavaScript Assets -->
 <script src="assets/js/jquery-1.12.0.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 
 <script>
 let cart = [];
 let total = 0;
+
+// Filter Products Function
+function filterProducts() {
+  const search = document.getElementById("search").value.toLowerCase();
+  const cards = document.querySelectorAll("#product-list .product-card");
+
+  cards.forEach(card => {
+    const name = card.querySelector("h4").textContent.toLowerCase();
+    card.style.display = name.includes(search) ? "block" : "none";
+  });
+}
+
+// Fetch and Dynamic Render Engine
 fetch("products.txt")
   .then(res => res.text())
   .then(text => {
@@ -90,30 +117,34 @@ fetch("products.txt")
 
       // CATEGORY
       if (line.startsWith("#")) {
-        category = line.replace("#", "");
+        category = line.replace("#", "").trim();
         container.innerHTML += `
-          <div class="col-12">
-            <h3 class="mt-4 mb-3">${category}</h3>
+          <div class="col-12 mt-4 mb-2">
+            <h3 class="border-bottom pb-2">${category}</h3>
           </div>
         `;
         return;
       }
 
-      // PRODUCT
+      // PRODUCT DATA
       const parts = line.split("|");
+      if (parts.length < 2) return;
       const name = parts[0].trim();
       const price = parseFloat(parts[1].trim());
 
       container.innerHTML += `
-        <div class="col-md-4 mb-3 product-card">
-          <div class="card p-3">
+        <div class="col-md-4 mb-4 product-card">
+          <div class="card h-100 p-3 shadow-sm">
             <h4>${name}</h4>
-            <small class="text-muted">${category}</small>
-            <p class="mt-2">AED ${price}</p>
-            <input type="number" id="qty${index}" value="1" min="1" class="form-control mb-2">
+            <small class="badge badge-secondary align-self-start mb-2">${category}</small>
+            <p class="h5 text-primary mt-auto">AED ${price}</p>
+            <div class="form-group mb-2">
+              <label class="small text-muted mb-1">Quantity:</label>
+              <input type="number" id="qty${index}" value="1" min="1" class="form-control">
+            </div>
             <button class="btn btn-primary w-100"
-              onclick="addToCart('${name}', ${price}, document.getElementById('qty${index}').value)">
-              Add to Cart
+              onclick="addToCart('${name.replace(/'/g, "\\'")}', ${price}, document.getElementById('qty${index}').value)">
+              <i class="fas fa-plus"></i> Add to Cart
             </button>
           </div>
         </div>
@@ -122,10 +153,11 @@ fetch("products.txt")
     });
   });
 
-
-// CART FUNCTIONS
+// CART LOGIC FUNCTIONS
 function addToCart(name, price, qty) {
   qty = parseInt(qty);
+  if (isNaN(qty) || qty < 1) return;
+  
   const item = cart.find(p => p.name === name);
 
   if (item) {
@@ -144,42 +176,46 @@ function removeFromCart(index) {
 
 function updateCart() {
   const list = document.getElementById("cart-items");
+  const waButton = document.getElementById("whatsapp-link");
   list.innerHTML = "";
   total = 0;
+
+  if (cart.length === 0) {
+    list.innerHTML = `<li class="list-group-item text-muted text-center py-3">Your cart is completely empty</li>`;
+    waButton.classList.add("disabled");
+  } else {
+    waButton.classList.remove("disabled");
+  }
 
   cart.forEach((item, i) => {
     total += item.price;
     list.innerHTML += `
-      <li>
-        ${item.name} x${item.qty} – AED ${item.price}
-        <button onclick="removeFromCart(${i})">Remove</button>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong>${item.name}</strong> 
+          <span class="badge badge-pill badge-primary ml-2">x${item.qty}</span>
+          <div class="small text-muted">AED ${item.price}</div>
+        </div>
+        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${i})">
+          <i class="fas fa-trash"></i> Remove
+        </button>
       </li>
     `;
   });
 
   document.getElementById("total").textContent = total;
 
-  let msg = "Hello, I want to order:%0A";
-  cart.forEach(i => msg += `- ${i.name} x${i.qty} (AED ${i.price})%0A`);
-  msg += `Total: AED ${total}`;
+  // Formulate URL Safe Message
+  let msg = "Hello Rapid Volt, I want to place an order:%0A%0A";
+  cart.forEach(i => msg += `- ${encodeURIComponent(i.name)} x${i.qty} (AED ${i.price})%0A`);
+  msg += `%0ATotal Order Amount: AED ${total}`;
 
-  document.getElementById("whatsapp-link").href =
-    "https://wa.me/971555778653?text=" + msg;
-}
-  function filterProducts() {
-  const search = document.getElementById("search").value.toLowerCase();
-  const cards = document.querySelectorAll("#product-list .card");
-
-  cards.forEach(card => {
-    const name = card.querySelector("h4").textContent.toLowerCase();
-    card.parentElement.style.display =
-      name.includes(search) ? "block" : "none";
-  });
+  waButton.href = "https://wa.me/971555778653?text=" + msg;
 }
 
+// Run baseline empty check
+updateCart();
 </script>
 
 </body>
 </html>
-
-
