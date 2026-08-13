@@ -66,13 +66,38 @@
       <ul id="cart-items" class="list-group mb-3">
         <!-- Cart items render here -->
       </ul>
+
+      <!-- DELIVERY LOCATION INPUT FIELD -->
+      <div class="form-group mb-4">
+        <label for="location" class="font-weight-bold text-muted small">Delivery Address / Location:</label>
+        <textarea 
+          id="location" 
+          class="form-control" 
+          rows="2" 
+          placeholder="Type your delivery location or warehouse address here..."
+          onkeyup="updateCart()"
+        ></textarea>
+      </div>
+
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="m-0">Total:</h5>
         <h4 class="m-0 text-primary">AED <span id="total">0</span></h4>
       </div>
-      <a id="whatsapp-link" class="btn btn-success btn-lg w-100 disabled" target="_blank" href="https://wa.me/9710555778653">
-        <i class="fab fa-whatsapp"></i> Order via WhatsApp
-      </a>
+
+      <!-- CHECKOUT BUTTONS -->
+      <div class="row">
+        <div class="col-sm-6 mb-2">
+          <a id="whatsapp-link" class="btn btn-success btn-lg w-100 disabled" target="_blank" href="https://wa.me/9710555778653">
+            <i class="fab fa-whatsapp"></i> Order via WhatsApp
+          </a>
+        </div>
+        <div class="col-sm-6 mb-2">
+          <a id="email-link" class="btn btn-dark btn-lg w-100 disabled" target="_blank" href="mailto:sales@rapid-volt.com">
+            <i class="fas fa-envelope"></i> Order via Email
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -105,7 +130,8 @@ function filterProducts() {
 fetch("products.txt")
   .then(res => res.text())
   .then(text => {
-    const lines = text.split("\n");
+    // Regex split to prevent Windows vs Mac line-break bugs (\r\n)
+    const lines = text.split(/\r?\n/);
     const container = document.getElementById("product-list");
 
     let category = "";
@@ -177,14 +203,19 @@ function removeFromCart(index) {
 function updateCart() {
   const list = document.getElementById("cart-items");
   const waButton = document.getElementById("whatsapp-link");
+  const emailButton = document.getElementById("email-link");
+  const userLocation = document.getElementById("location").value.trim();
+
   list.innerHTML = "";
   total = 0;
 
   if (cart.length === 0) {
     list.innerHTML = `<li class="list-group-item text-muted text-center py-3">Your cart is completely empty</li>`;
     waButton.classList.add("disabled");
+    emailButton.classList.add("disabled");
   } else {
     waButton.classList.remove("disabled");
+    emailButton.classList.remove("disabled");
   }
 
   cart.forEach((item, i) => {
@@ -205,12 +236,27 @@ function updateCart() {
 
   document.getElementById("total").textContent = total;
 
-  // Formulate URL Safe Message
-  let msg = "Hello Rapid Volt, I want to place an order:%0A%0A";
-  cart.forEach(i => msg += `- ${encodeURIComponent(i.name)} x${i.qty} (AED ${i.price})%0A`);
-  msg += `%0ATotal Order Amount: AED ${total}`;
+  // Compile structural strings for messages
+  const locationString = userLocation ? userLocation : "Not Provided";
 
-  waButton.href = "https://wa.me/9710555778653?text=" + msg;
+  // 1. Build WhatsApp String Configuration
+  let waMsg = "Hello Rapid Volt, I want to place an order:%0A%0A";
+  cart.forEach(i => waMsg += `- ${encodeURIComponent(i.name)} x${i.qty} (AED ${i.price})%0A`);
+  waMsg += `%0ATotal Order Amount: AED ${total}%0A`;
+  waMsg += `Delivery Location: ${encodeURIComponent(locationString)}`;
+  waButton.href = "https://wa.me/9710555778653?text=" + waMsg;
+
+  // 2. Build Email String Configuration (mailto format)
+  let emailText = `Hello Rapid Volt,\n\nI want to place an order:\n\n`;
+  cart.forEach(i => emailText += `- ${i.name} x${i.qty} (AED ${i.price})\n`);
+  emailText += `\nTotal Order Amount: AED ${total}\n`;
+  emailText += `Delivery Location: ${locationString}`;
+
+  let emailSubject = encodeURIComponent("New Product Order Placement - Rapid Volt");
+  let emailBody = encodeURIComponent(emailText);
+  
+  // Set your corporate inbox email handle right here
+  emailButton.href = `mailto:sales@://rapid-volt.com{emailSubject}&body=${emailBody}`;
 }
 
 // Run baseline empty check
