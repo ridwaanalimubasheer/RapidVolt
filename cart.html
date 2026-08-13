@@ -7,7 +7,7 @@
 <title>Rapid Volt</title>
 <link rel="shortcut icon" type="image/png" href="assets/images/rapidvolt.png">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="https://fontawesome.com">
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -28,7 +28,7 @@
         <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
         <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
         <li class="nav-item">
-          <a class="nav-link text-success font-weight-bold" href="https://wa.me/9710555778653" target="_blank">
+          <a class="nav-link text-success font-weight-bold" href="https://wa.me" target="_blank">
             <i class="fab fa-whatsapp"></i> WhatsApp
           </a>
         </li>
@@ -68,7 +68,7 @@
       </ul>
 
       <!-- DELIVERY LOCATION INPUT FIELD -->
-      <div class="form-group mb-4">
+      <div class="form-group mb-3">
         <label for="location" class="font-weight-bold text-muted small">Delivery Address / Location:</label>
         <textarea 
           id="location" 
@@ -87,7 +87,7 @@
       <!-- CHECKOUT BUTTONS -->
       <div class="row">
         <div class="col-sm-6 mb-2">
-          <a id="whatsapp-link" class="btn btn-success btn-lg w-100 disabled" target="_blank" href="https://wa.me/9710555778653">
+          <a id="whatsapp-link" class="btn btn-success btn-lg w-100 disabled" target="_blank" href="https://wa.me">
             <i class="fab fa-whatsapp"></i> Order via WhatsApp
           </a>
         </div>
@@ -130,7 +130,6 @@ function filterProducts() {
 fetch("products.txt")
   .then(res => res.text())
   .then(text => {
-    // Regex split to prevent Windows vs Mac line-break bugs (\r\n)
     const lines = text.split(/\r?\n/);
     const container = document.getElementById("product-list");
 
@@ -154,16 +153,17 @@ fetch("products.txt")
 
       // PRODUCT DATA
       const parts = line.split("|");
-      if (parts.length < 2) return;
       const name = parts[0].trim();
-      const price = parseFloat(parts[1].trim());
+      
+      // Makes pricing optional so your raw text file doesn't crash the loop
+      const price = parts.length >= 2 ? parseFloat(parts[1].trim()) : 0;
 
       container.innerHTML += `
         <div class="col-md-4 mb-4 product-card">
           <div class="card h-100 p-3 shadow-sm">
             <h4>${name}</h4>
             <small class="badge badge-secondary align-self-start mb-2">${category}</small>
-            <p class="h5 text-primary mt-auto">AED ${price}</p>
+            <p class="h5 text-primary mt-auto">${price > 0 ? 'AED ' + price : 'Price on Request'}</p>
             <div class="form-group mb-2">
               <label class="small text-muted mb-1">Quantity:</label>
               <input type="number" id="qty${index}" value="1" min="1" class="form-control">
@@ -244,7 +244,7 @@ function updateCart() {
   cart.forEach(i => waMsg += `- ${encodeURIComponent(i.name)} x${i.qty} (AED ${i.price})%0A`);
   waMsg += `%0ATotal Order Amount: AED ${total}%0A`;
   waMsg += `Delivery Location: ${encodeURIComponent(locationString)}`;
-  waButton.href = "https://wa.me/9710555778653?text=" + waMsg;
+  waButton.href = "https://wa.me?text=" + waMsg;
 
   // 2. Build Email String Configuration (mailto format)
   let emailText = `Hello Rapid Volt,\n\nI want to place an order:\n\n`;
