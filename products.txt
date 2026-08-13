@@ -13,6 +13,13 @@ GI CABLE TRAY JOINT COUPLER | 0
 20MM PVC ADOPTER | 0
 4k 120m HDMI Extender | 0
 cable glad kits cw | 0
+1CX16 CU/XLPE/SWA/PVC 1KV CABLE-ducab | 52.00
+1CX16MM ARMOURED CABLE- yellow green - ducab | 12.00
+4CX10 CU/XLPE/SWA/PVC 1KV-DUCAB | 38.00
+1CX10MM YG-ducab | 7.80
+4CX6MM CU/XLPE/SWA/PVC 1KV CABLE- ducab | 25.00
+1cx6mm yg-ducab | 200.00
+
 
 #HardwareAndFixings
 6MM FISHER PLUG | 0
