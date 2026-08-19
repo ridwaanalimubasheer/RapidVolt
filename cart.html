@@ -250,14 +250,15 @@ function updateCart() {
   waMsg += `Delivery Location: ${locationString}`;
   waButton.href = "https://wa.me?text=" + encodeURIComponent(waMsg);
 
-  // 2. Build Email String Configuration (mailto format)
-  let emailSubject = encodeURIComponent("New Order - Rapid Volt");
-  let emailBody = "Hello Rapid Volt,\n\nI want to place an order:\n\n";
-  cart.forEach(i => emailBody += `- ${i.name} x${i.qty} (AED ${i.price})\n`);
-  emailBody += `\nTotal Order Amount: AED ${total}\n`;
-  emailBody += `Delivery Location: ${locationString}`;
-  
-  emailButton.href = "mailto:ali@btechuae.com?subject=" + emailSubject + "&body=" + encodeURIComponent(emailBody);
+// 2. Build Email String Configuration (mailto format)
+let emailSubject = encodeURIComponent("New Order - Rapid Volt");
+let emailBody = "Hello Rapid Volt,\n\nI want to place an order:\n\n";
+cart.forEach(i => emailBody += `- ${i.name} x${i.qty} (AED ${i.price})\n`);
+emailBody += `\nTotal Order Amount: AED ${total}\n`;
+emailBody += `Delivery Location: ${locationString}`;
+
+emailButton.href = "mailto:ali@btech.ae?subject=" + emailSubject + "&body=" + encodeURIComponent(emailBody);
+
 }
 </script>
 
