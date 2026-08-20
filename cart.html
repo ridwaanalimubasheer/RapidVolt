@@ -2,36 +2,25 @@
 <html lang="en">
 
 <head>
-
 <meta charset="utf-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Rapid Volt</title>
 
-<link
-  rel="shortcut icon"
-  type="image/png"
-  href="assets/images/rapidvolt.png">
+<link rel="shortcut icon" type="image/png"
+      href="assets/images/rapidvolt.png">
 
-<!-- FontAwesome CDN for icons -->
-<link
-  rel="stylesheet"
-  href="https://cloudflare.com">
+<link rel="stylesheet"
+      href="https://cloudflare.com">
 
-<link
-  rel="stylesheet"
-  href="assets/css/bootstrap.min.css">
+<link rel="stylesheet"
+      href="assets/css/bootstrap.min.css">
 
-<link
-  rel="stylesheet"
-  href="assets/css/style.css">
-
+<link rel="stylesheet"
+      href="assets/css/style.css">
 </head>
 
-
 <body>
-
 
 <!-- ================= HEADER ================= -->
 
@@ -39,14 +28,9 @@
 
   <div class="container">
 
-    <a
-      class="navbar-brand font-weight-bold"
-      href="#">
-
+    <a class="navbar-brand font-weight-bold" href="#">
       Rapid Volt
-
     </a>
-
 
     <button
       class="navbar-toggler"
@@ -58,68 +42,39 @@
 
     </button>
 
-
-    <div
-      class="collapse navbar-collapse"
-      id="navMain">
+    <div class="collapse navbar-collapse" id="navMain">
 
       <ul class="navbar-nav ml-auto">
 
-
         <li class="nav-item">
-
-          <a
-            class="nav-link"
-            href="index.html">
-
+          <a class="nav-link" href="index.html">
             Home
-
           </a>
-
         </li>
 
-
         <li class="nav-item">
-
-          <a
-            class="nav-link"
-            href="#">
-
+          <a class="nav-link" href="#">
             Shop
-
           </a>
-
         </li>
 
-
         <li class="nav-item">
-
-          <a
-            class="nav-link"
-            href="article.html">
-
+          <a class="nav-link" href="article.html">
             About Us
-
           </a>
-
         </li>
 
-
         <li class="nav-item">
-
           <a
             class="nav-link text-success font-weight-bold"
             href="https://wa.me"
             target="_blank">
 
             <i class="fab fa-whatsapp"></i>
-
             WhatsApp
 
           </a>
-
         </li>
-
 
       </ul>
 
@@ -130,18 +85,13 @@
 </nav>
 
 
-
 <!-- ================= SHOP ================= -->
 
 <section class="container my-5">
 
-
   <h2 class="text-center mb-4">
-
     Rapid Volt – Cabling Products
-
   </h2>
-
 
 
   <!-- SEARCH -->
@@ -151,63 +101,42 @@
     <div class="col-md-6 mx-auto">
 
       <input
-
         type="text"
-
         id="search"
-
         class="form-control form-control-lg"
-
-        placeholder="Search products..."
-
-        onkeyup="filterProducts()">
+        placeholder="Search products...">
 
     </div>
 
   </div>
 
 
-
   <!-- PRODUCT LIST -->
 
-  <div
-    class="row"
-    id="product-list">
-
-  </div>
-
+  <div class="row" id="product-list"></div>
 
 
   <hr class="my-5">
-
 
 
   <!-- ================= CART ================= -->
 
   <div class="row">
 
-    <div
-      class="col-md-8 mx-auto bg-light p-4 rounded shadow-sm">
-
+    <div class="col-md-8 mx-auto bg-light p-4 rounded shadow-sm">
 
       <h4 class="mb-3">
 
         <i class="fas fa-shopping-cart"></i>
-
         Your Cart
 
       </h4>
 
 
-
-      <!-- CART ITEMS -->
-
       <ul
         id="cart-items"
         class="list-group mb-3">
-
       </ul>
-
 
 
       <!-- DELIVERY LOCATION -->
@@ -222,23 +151,14 @@
 
         </label>
 
-
         <textarea
-
           id="location"
-
           class="form-control"
-
           rows="2"
-
-          placeholder="Type your delivery location or warehouse address here..."
-
-          onkeyup="updateCart()">
-
+          placeholder="Type your delivery location or warehouse address here...">
         </textarea>
 
       </div>
-
 
 
       <!-- CUSTOMER NAME -->
@@ -253,19 +173,13 @@
 
         </label>
 
-
         <input
-
           type="text"
-
           id="customer-name"
-
           class="form-control"
-
           placeholder="Enter your name">
 
       </div>
-
 
 
       <!-- CUSTOMER PHONE -->
@@ -280,19 +194,13 @@
 
         </label>
 
-
         <input
-
           type="tel"
-
           id="customer-phone"
-
           class="form-control"
-
           placeholder="Enter your phone number">
 
       </div>
-
 
 
       <!-- CUSTOMER EMAIL -->
@@ -307,47 +215,31 @@
 
         </label>
 
-
         <input
-
           type="email"
-
           id="customer-email"
-
           class="form-control"
-
           placeholder="Enter your email">
 
       </div>
 
 
-
       <!-- TOTAL -->
 
-      <div
-        class="d-flex justify-content-between align-items-center mb-3">
+      <div class="d-flex justify-content-between align-items-center mb-3">
 
         <h5 class="m-0">
-
           Total:
-
         </h5>
-
 
         <h4 class="m-0 text-primary">
 
           AED
-
-          <span id="total">
-
-            0
-
-          </span>
+          <span id="total">0</span>
 
         </h4>
 
       </div>
-
 
 
       <!-- SEND ORDER -->
@@ -357,17 +249,12 @@
         <div class="col-12">
 
           <button
-
+            type="button"
             id="send-order-button"
-
             class="btn btn-primary btn-lg w-100"
-
-            onclick="sendOrder()"
-
             disabled>
 
             <i class="fas fa-paper-plane"></i>
-
             Send Order
 
           </button>
@@ -377,17 +264,12 @@
       </div>
 
 
-
       <!-- ORDER MESSAGE -->
 
       <div
-
         id="order-message"
-
         class="text-center mt-3">
-
       </div>
-
 
     </div>
 
@@ -396,51 +278,47 @@
 </section>
 
 
-
 <!-- ================= FOOTER ================= -->
 
-<footer
-  class="bg-dark text-white text-center p-3 mt-5">
+<footer class="bg-dark text-white text-center p-3 mt-5">
 
   © 2026 Rapid Volt
 
 </footer>
 
 
-
 <!-- ================= JAVASCRIPT ================= -->
 
 <script src="assets/js/jquery-1.12.0.min.js"></script>
-
 <script src="assets/js/bootstrap.min.js"></script>
-
 
 
 <script>
 
-
 /* =====================================================
-   CART VARIABLES
+   CART
 ===================================================== */
 
 let cart = [];
-
 let total = 0;
 
 
-
 /* =====================================================
-   CLOUDFLARE ORDER SERVER
+   CLOUDFLARE WORKER
 ===================================================== */
 
 const ORDER_SERVER_URL =
 "https://shrill-leaf-26ee.ridwaanali147.workers.dev/orders";
 
 
-
 /* =====================================================
-   SEARCH PRODUCTS
+   SEARCH
 ===================================================== */
+
+document
+  .getElementById("search")
+  .addEventListener("input", filterProducts);
+
 
 function filterProducts() {
 
@@ -448,44 +326,34 @@ function filterProducts() {
     document
       .getElementById("search")
       .value
-      .toLowerCase();
-
+      .toLowerCase()
+      .trim();
 
   const cards =
     document.querySelectorAll(
       "#product-list .product-card"
     );
 
-
   cards.forEach(function(card) {
 
     const name =
       card
-        .querySelector("h4")
+        .querySelector(".product-name")
         .textContent
         .toLowerCase();
 
-
-    if (
+    card.style.display =
       name.includes(search)
-    ) {
-
-      card.style.display = "";
-
-    } else {
-
-      card.style.display = "none";
-
-    }
+        ? ""
+        : "none";
 
   });
 
 }
 
 
-
 /* =====================================================
-   LOAD PRODUCTS.TXT
+   LOAD PRODUCTS
 ===================================================== */
 
 fetch("products.txt")
@@ -493,78 +361,64 @@ fetch("products.txt")
 .then(function(response) {
 
   if (!response.ok) {
-
     throw new Error(
-      "products.txt could not be loaded"
+      "Could not load products.txt"
     );
-
   }
 
   return response.text();
 
 })
 
-
 .then(function(text) {
-
-  const lines =
-    text.split(/\r?\n/);
-
 
   const container =
     document.getElementById(
       "product-list"
     );
 
+  const lines =
+    text.split(/\r?\n/);
 
   let category = "";
-
 
 
   lines.forEach(function(line) {
 
     line = line.trim();
 
-
     if (!line) {
-
       return;
-
     }
-
 
 
     /* CATEGORY */
 
-    if (
-      line.startsWith("#")
-    ) {
+    if (line.startsWith("#")) {
 
       category =
         line
           .substring(1)
           .trim();
 
+      const categoryDiv =
+        document.createElement("div");
 
-      container.innerHTML += `
+      categoryDiv.className =
+        "col-12 mt-4 mb-2";
 
-        <div class="col-12 mt-4 mb-2">
-
-          <h3 class="border-bottom pb-2">
-
-            ${escapeHTML(category)}
-
-          </h3>
-
-        </div>
-
+      categoryDiv.innerHTML = `
+        <h3 class="border-bottom pb-2">
+          ${escapeHTML(category)}
+        </h3>
       `;
 
+      container.appendChild(
+        categoryDiv
+      );
 
       return;
-
     }
-
 
 
     /* PRODUCT */
@@ -572,52 +426,41 @@ fetch("products.txt")
     const parts =
       line.split("|");
 
-
     const name =
       parts[0].trim();
 
-
     let price = 0;
 
+    if (parts.length > 1) {
 
-    if (
-      parts.length >= 2
-    ) {
-
-      price =
+      const parsed =
         parseFloat(
           parts[1].trim()
         );
 
-    }
+      if (!isNaN(parsed)) {
+        price = parsed;
+      }
 
+    }
 
 
     /* PRODUCT CARD */
 
     const card =
-      document.createElement(
-        "div"
-      );
-
+      document.createElement("div");
 
     card.className =
       "col-md-4 mb-4 product-card";
-
 
 
     card.innerHTML = `
 
       <div class="card h-100 p-3 shadow-sm">
 
-
-        <h4>
-
+        <h4 class="product-name">
           ${escapeHTML(name)}
-
         </h4>
-
-
 
         <small
           class="badge badge-secondary align-self-start mb-2">
@@ -626,77 +469,48 @@ fetch("products.txt")
 
         </small>
 
-
-
         <p class="h5 text-primary mt-auto">
 
           ${
             price > 0
-
-            ? "AED " + price
-
-            : "Price on Request"
-
+              ? "AED " + price.toFixed(2)
+              : "Price on Request"
           }
 
         </p>
 
-
-
         <div class="form-group mb-2">
 
-
-          <label
-            class="small text-muted mb-1">
-
+          <label class="small text-muted mb-1">
             Quantity:
-
           </label>
 
-
-
           <input
-
             type="number"
-
             value="1"
-
             min="1"
-
+            step="1"
             class="form-control product-quantity">
-
 
         </div>
 
-
-
         <button
-
+          type="button"
           class="btn btn-primary w-100 add-cart-button">
 
           <i class="fas fa-plus"></i>
-
           Add to Cart
 
         </button>
-
 
       </div>
 
     `;
 
 
-
-    /* QUANTITY */
-
-    const quantityInput =
-      card.querySelector(
-        ".product-quantity"
-      );
-
-
-
-    /* ADD BUTTON */
+    /* =================================================
+       ADD BUTTON
+    ================================================= */
 
     const addButton =
       card.querySelector(
@@ -704,30 +518,48 @@ fetch("products.txt")
       );
 
 
+    const quantityInput =
+      card.querySelector(
+        ".product-quantity"
+      );
 
-    addButton.addEventListener(
-      "click",
-      function() {
+
+    addButton.onclick =
+      function(event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        let quantity =
+          parseInt(
+            quantityInput.value,
+            10
+          );
+
+        if (
+          isNaN(quantity) ||
+          quantity < 1
+        ) {
+
+          quantity = 1;
+
+          quantityInput.value = 1;
+
+        }
+
 
         addToCart(
-
           name,
-
           price,
-
-          quantityInput.value
-
+          quantity
         );
 
-      }
-    );
+      };
 
 
+    /* ADD CARD */
 
-    container.appendChild(
-      card
-    );
-
+    container.appendChild(card);
 
   });
 
@@ -737,7 +569,6 @@ fetch("products.txt")
 .catch(function(error) {
 
   console.error(error);
-
 
   document.getElementById(
     "product-list"
@@ -763,7 +594,6 @@ fetch("products.txt")
 });
 
 
-
 /* =====================================================
    ADD TO CART
 ===================================================== */
@@ -774,9 +604,11 @@ function addToCart(
   quantity
 ) {
 
-
   quantity =
-    parseInt(quantity);
+    parseInt(
+      quantity,
+      10
+    );
 
 
   if (
@@ -784,17 +616,10 @@ function addToCart(
     quantity < 1
   ) {
 
-    alert(
-      "Please enter a valid quantity."
-    );
-
-    return;
+    quantity = 1;
 
   }
 
-
-
-  /* CHECK IF ALREADY IN CART */
 
   const existing =
     cart.find(function(item) {
@@ -804,44 +629,33 @@ function addToCart(
     });
 
 
-
   if (existing) {
 
-
-    existing.qty +=
-      quantity;
-
+    existing.qty += quantity;
 
     existing.price +=
       price * quantity;
 
+  }
 
-  } else {
-
+  else {
 
     cart.push({
 
-      name:
-        name,
+      name: name,
 
-      qty:
-        quantity,
+      qty: quantity,
 
       price:
         price * quantity
 
     });
 
-
   }
-
 
 
   updateCart();
 
-
-
-  /* SMALL SUCCESS MESSAGE */
 
   const message =
     document.getElementById(
@@ -853,12 +667,11 @@ function addToCart(
 
     <div class="alert alert-success">
 
-      ✓ Added to cart
+      ✓ ${escapeHTML(name)} added to cart
 
     </div>
 
   `;
-
 
 
   setTimeout(function() {
@@ -870,12 +683,21 @@ function addToCart(
 }
 
 
-
 /* =====================================================
-   REMOVE FROM CART
+   REMOVE
 ===================================================== */
 
 function removeFromCart(index) {
+
+  if (
+    index < 0 ||
+    index >= cart.length
+  ) {
+
+    return;
+
+  }
+
 
   cart.splice(
     index,
@@ -888,13 +710,11 @@ function removeFromCart(index) {
 }
 
 
-
 /* =====================================================
    UPDATE CART
 ===================================================== */
 
 function updateCart() {
-
 
   const list =
     document.getElementById(
@@ -910,17 +730,10 @@ function updateCart() {
 
   list.innerHTML = "";
 
-
   total = 0;
 
 
-
-  /* EMPTY */
-
-  if (
-    cart.length === 0
-  ) {
-
+  if (cart.length === 0) {
 
     list.innerHTML = `
 
@@ -934,14 +747,12 @@ function updateCart() {
     `;
 
 
-    sendButton.disabled =
-      true;
+    sendButton.disabled = true;
 
 
     document.getElementById(
       "total"
-    ).textContent =
-      "0";
+    ).textContent = "0.00";
 
 
     return;
@@ -949,112 +760,99 @@ function updateCart() {
   }
 
 
+  cart.forEach(function(item, index) {
 
-  /* ENABLE SEND */
-
-  sendButton.disabled =
-    false;
+    total += item.price;
 
 
-
-  /* DISPLAY ITEMS */
-
-  cart.forEach(
-    function(item, index) {
+    const li =
+      document.createElement("li");
 
 
-      total +=
-        item.price;
+    li.className =
+      "list-group-item d-flex justify-content-between align-items-center";
 
 
+    li.innerHTML = `
 
-      list.innerHTML += `
+      <div>
 
-        <li
-          class="list-group-item d-flex justify-content-between align-items-center">
+        <strong>
+          ${escapeHTML(item.name)}
+        </strong>
 
+        <span
+          class="badge badge-pill badge-primary ml-2">
 
-          <div>
+          x${item.qty}
 
+        </span>
 
-            <strong>
+        <div class="small text-muted">
 
-              ${escapeHTML(item.name)}
+          AED ${item.price.toFixed(2)}
 
-            </strong>
+        </div>
 
+      </div>
 
+      <button
+        type="button"
+        class="btn btn-danger btn-sm remove-cart-button">
 
-            <span
-              class="badge badge-pill badge-primary ml-2">
+        <i class="fas fa-trash"></i>
+        Remove
 
-              x${item.qty}
+      </button>
 
-            </span>
-
-
-
-            <div
-              class="small text-muted">
-
-              AED
-              ${item.price.toFixed(2)}
-
-            </div>
-
-
-          </div>
+    `;
 
 
+    li
+      .querySelector(
+        ".remove-cart-button"
+      )
+      .onclick =
+      function() {
 
-          <button
+        removeFromCart(index);
 
-            class="btn btn-danger btn-sm"
-
-            onclick="removeFromCart(${index})">
-
-
-            <i class="fas fa-trash"></i>
-
-            Remove
-
-
-          </button>
+      };
 
 
-        </li>
+    list.appendChild(li);
 
-      `;
+  });
 
-
-    }
-  );
-
-
-
-  /* TOTAL */
 
   document.getElementById(
     "total"
   ).textContent =
     total.toFixed(2);
 
-}
 
+  sendButton.disabled = false;
+
+}
 
 
 /* =====================================================
    SEND ORDER
 ===================================================== */
 
+document
+  .getElementById(
+    "send-order-button"
+  )
+  .addEventListener(
+    "click",
+    sendOrder
+  );
+
+
 async function sendOrder() {
 
-
-  /* CHECK CART */
-
-  if (
-    cart.length === 0
-  ) {
+  if (cart.length === 0) {
 
     alert(
       "Your cart is empty."
@@ -1065,9 +863,6 @@ async function sendOrder() {
   }
 
 
-
-  /* CUSTOMER NAME */
-
   const customerName =
     document
       .getElementById(
@@ -1076,9 +871,6 @@ async function sendOrder() {
       .value
       .trim();
 
-
-
-  /* PHONE */
 
   const customerPhone =
     document
@@ -1089,9 +881,6 @@ async function sendOrder() {
       .trim();
 
 
-
-  /* EMAIL */
-
   const customerEmail =
     document
       .getElementById(
@@ -1101,9 +890,6 @@ async function sendOrder() {
       .trim();
 
 
-
-  /* LOCATION */
-
   const location =
     document
       .getElementById(
@@ -1112,9 +898,6 @@ async function sendOrder() {
       .value
       .trim();
 
-
-
-  /* REQUIRED */
 
   if (!customerName) {
 
@@ -1149,91 +932,58 @@ async function sendOrder() {
   }
 
 
-
-  /* CREATE ORDER */
-
   const order = {
 
-
     orderId:
-
-      "RV-" +
-
-      Date.now(),
-
-
+      "RV-" + Date.now(),
 
     customerName:
-
       customerName,
 
-
-
     customerPhone:
-
       customerPhone,
 
-
-
     customerEmail:
-
       customerEmail,
 
-
-
     deliveryLocation:
-
       location,
 
-
-
     items:
+      cart.map(function(item) {
 
-      cart.map(
-        function(item) {
+        return {
 
-          return {
+          name:
+            item.name,
 
-            name:
-              item.name,
+          quantity:
+            item.qty,
 
-            quantity:
-              item.qty,
-
-            unitPrice:
-
-              item.qty > 0
-
-              ? item.price /
-                item.qty
-
+          unitPrice:
+            item.qty > 0
+              ? Number(
+                  (
+                    item.price /
+                    item.qty
+                  ).toFixed(2)
+                )
               : 0
 
-          };
+        };
 
-        }
-      ),
-
-
+      }),
 
     total:
-
       Number(
         total.toFixed(2)
       ),
 
-
-
     createdAt:
-
-      new Date()
-        .toISOString()
+      new Date().toISOString()
 
   };
 
-
-
-  /* BUTTON */
 
   const button =
     document.getElementById(
@@ -1247,37 +997,24 @@ async function sendOrder() {
     );
 
 
-
-  button.disabled =
-    true;
-
+  button.disabled = true;
 
 
   button.innerHTML =
     '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
 
+  message.innerHTML = "";
 
-  message.innerHTML =
-    "";
-
-
-
-  /* SEND */
 
   try {
 
-
     const response =
       await fetch(
-
         ORDER_SERVER_URL,
-
         {
 
-          method:
-            "POST",
-
+          method: "POST",
 
           headers: {
 
@@ -1286,21 +1023,14 @@ async function sendOrder() {
 
           },
 
-
           body:
-            JSON.stringify(
-              order
-            )
+            JSON.stringify(order)
 
         }
-
       );
 
 
-
-    if (
-      !response.ok
-    ) {
+    if (!response.ok) {
 
       throw new Error(
         "Server error: " +
@@ -1310,46 +1040,28 @@ async function sendOrder() {
     }
 
 
-
-    /* SUCCESS */
-
     message.innerHTML = `
 
-      <div
-        class="alert alert-success">
+      <div class="alert alert-success">
 
         <strong>
-
           ✓ Order sent successfully!
-
         </strong>
-
 
         <br>
 
-
         Order number:
-
-        ${escapeHTML(
-          order.orderId
-        )}
+        ${escapeHTML(order.orderId)}
 
       </div>
 
     `;
 
 
-
-    /* CLEAR CART */
-
     cart = [];
-
 
     updateCart();
 
-
-
-    /* CLEAR FIELDS */
 
     document.getElementById(
       "customer-name"
@@ -1370,57 +1082,42 @@ async function sendOrder() {
       "location"
     ).value = "";
 
-
   }
-
 
   catch(error) {
 
-
     console.error(
+      "Order error:",
       error
     );
 
 
     message.innerHTML = `
 
-      <div
-        class="alert alert-danger">
+      <div class="alert alert-danger">
 
         <strong>
-
           ✕ Order could not be sent.
-
         </strong>
-
 
         <br>
 
-
         Please try again.
-
 
       </div>
 
     `;
 
-
   }
 
 
-
-  /* RESTORE BUTTON */
-
-  button.disabled =
-    false;
+  button.disabled = false;
 
 
   button.innerHTML =
-
     '<i class="fas fa-paper-plane"></i> Send Order';
 
 }
-
 
 
 /* =====================================================
@@ -1429,44 +1126,19 @@ async function sendOrder() {
 
 function escapeHTML(value) {
 
+  return String(value || "")
 
-  return String(
-    value || ""
-  )
+    .replace(/&/g, "&amp;")
 
+    .replace(/</g, "&lt;")
 
-  .replace(
-    /&/g,
-    "&amp;"
-  )
+    .replace(/>/g, "&gt;")
 
+    .replace(/"/g, "&quot;")
 
-  .replace(
-    /</g,
-    "&lt;"
-  )
-
-
-  .replace(
-    />/g,
-    "&gt;"
-  )
-
-
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-
-
-  .replace(
-    /'/g,
-    "&#039;"
-  );
-
+    .replace(/'/g, "&#039;");
 
 }
-
 
 
 /* =====================================================
@@ -1475,10 +1147,28 @@ function escapeHTML(value) {
 
 updateCart();
 
+  function goToCart() {
+  const cart = document.getElementById("cart-items");
+
+  if (cart) {
+    cart.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
 
 </script>
+  <!-- GO TO CART BUTTON -->
+<button
+  type="button"
+  id="go-cart-button"
+  onclick="goToCart()"
+  title="Go to Cart">
 
+  🛒
+
+</button>
 
 </body>
-
 </html>
