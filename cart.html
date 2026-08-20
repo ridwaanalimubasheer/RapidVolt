@@ -1,19 +1,37 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Rapid Volt</title>
-<link rel="shortcut icon" type="image/png" href="assets/images/rapidvolt.png">
 
-<!-- FontAwesome -->
-<link rel="stylesheet" href="https://cloudflare.com">
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
+<link
+  rel="shortcut icon"
+  type="image/png"
+  href="assets/images/rapidvolt.png">
+
+<!-- FontAwesome CDN for icons -->
+<link
+  rel="stylesheet"
+  href="https://cloudflare.com">
+
+<link
+  rel="stylesheet"
+  href="assets/css/bootstrap.min.css">
+
+<link
+  rel="stylesheet"
+  href="assets/css/style.css">
+
 </head>
 
+
 <body>
+
 
 <!-- ================= HEADER ================= -->
 
@@ -21,9 +39,14 @@
 
   <div class="container">
 
-    <a class="navbar-brand font-weight-bold" href="#">
+    <a
+      class="navbar-brand font-weight-bold"
+      href="#">
+
       Rapid Volt
+
     </a>
+
 
     <button
       class="navbar-toggler"
@@ -35,29 +58,52 @@
 
     </button>
 
+
     <div
       class="collapse navbar-collapse"
       id="navMain">
 
       <ul class="navbar-nav ml-auto">
 
+
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+
+          <a
+            class="nav-link"
+            href="index.html">
+
             Home
+
           </a>
+
         </li>
 
+
         <li class="nav-item">
-          <a class="nav-link" href="#">
+
+          <a
+            class="nav-link"
+            href="#">
+
             Shop
+
           </a>
+
         </li>
 
+
         <li class="nav-item">
-          <a class="nav-link" href="article.html">
+
+          <a
+            class="nav-link"
+            href="article.html">
+
             About Us
+
           </a>
+
         </li>
+
 
         <li class="nav-item">
 
@@ -67,11 +113,13 @@
             target="_blank">
 
             <i class="fab fa-whatsapp"></i>
+
             WhatsApp
 
           </a>
 
         </li>
+
 
       </ul>
 
@@ -82,13 +130,18 @@
 </nav>
 
 
-<!-- ================= SHOP SECTION ================= -->
+
+<!-- ================= SHOP ================= -->
 
 <section class="container my-5">
 
+
   <h2 class="text-center mb-4">
+
     Rapid Volt – Cabling Products
+
   </h2>
+
 
 
   <!-- SEARCH -->
@@ -98,10 +151,15 @@
     <div class="col-md-6 mx-auto">
 
       <input
+
         type="text"
+
         id="search"
+
         class="form-control form-control-lg"
+
         placeholder="Search products..."
+
         onkeyup="filterProducts()">
 
     </div>
@@ -109,7 +167,8 @@
   </div>
 
 
-  <!-- PRODUCTS -->
+
+  <!-- PRODUCT LIST -->
 
   <div
     class="row"
@@ -118,7 +177,9 @@
   </div>
 
 
+
   <hr class="my-5">
+
 
 
   <!-- ================= CART ================= -->
@@ -127,6 +188,7 @@
 
     <div
       class="col-md-8 mx-auto bg-light p-4 rounded shadow-sm">
+
 
       <h4 class="mb-3">
 
@@ -137,6 +199,9 @@
       </h4>
 
 
+
+      <!-- CART ITEMS -->
+
       <ul
         id="cart-items"
         class="list-group mb-3">
@@ -144,7 +209,8 @@
       </ul>
 
 
-      <!-- LOCATION -->
+
+      <!-- DELIVERY LOCATION -->
 
       <div class="form-group mb-3">
 
@@ -156,17 +222,26 @@
 
         </label>
 
+
         <textarea
+
           id="location"
+
           class="form-control"
+
           rows="2"
+
           placeholder="Type your delivery location or warehouse address here..."
-          onkeyup="updateCart()"></textarea>
+
+          onkeyup="updateCart()">
+
+        </textarea>
 
       </div>
 
 
-      <!-- NAME -->
+
+      <!-- CUSTOMER NAME -->
 
       <div class="form-group mb-3">
 
@@ -178,16 +253,22 @@
 
         </label>
 
+
         <input
+
           type="text"
+
           id="customer-name"
+
           class="form-control"
+
           placeholder="Enter your name">
 
       </div>
 
 
-      <!-- PHONE -->
+
+      <!-- CUSTOMER PHONE -->
 
       <div class="form-group mb-3">
 
@@ -199,16 +280,22 @@
 
         </label>
 
+
         <input
+
           type="tel"
+
           id="customer-phone"
+
           class="form-control"
+
           placeholder="Enter your phone number">
 
       </div>
 
 
-      <!-- EMAIL -->
+
+      <!-- CUSTOMER EMAIL -->
 
       <div class="form-group mb-3">
 
@@ -220,13 +307,19 @@
 
         </label>
 
+
         <input
+
           type="email"
+
           id="customer-email"
+
           class="form-control"
+
           placeholder="Enter your email">
 
       </div>
+
 
 
       <!-- TOTAL -->
@@ -235,17 +328,26 @@
         class="d-flex justify-content-between align-items-center mb-3">
 
         <h5 class="m-0">
+
           Total:
+
         </h5>
+
 
         <h4 class="m-0 text-primary">
 
           AED
-          <span id="total">0</span>
+
+          <span id="total">
+
+            0
+
+          </span>
 
         </h4>
 
       </div>
+
 
 
       <!-- SEND ORDER -->
@@ -255,9 +357,13 @@
         <div class="col-12">
 
           <button
+
             id="send-order-button"
+
             class="btn btn-primary btn-lg w-100"
+
             onclick="sendOrder()"
+
             disabled>
 
             <i class="fas fa-paper-plane"></i>
@@ -271,19 +377,24 @@
       </div>
 
 
-      <!-- MESSAGE -->
+
+      <!-- ORDER MESSAGE -->
 
       <div
+
         id="order-message"
+
         class="text-center mt-3">
 
       </div>
+
 
     </div>
 
   </div>
 
 </section>
+
 
 
 <!-- ================= FOOTER ================= -->
@@ -296,32 +407,39 @@
 </footer>
 
 
-<!-- JAVASCRIPT -->
+
+<!-- ================= JAVASCRIPT ================= -->
 
 <script src="assets/js/jquery-1.12.0.min.js"></script>
+
 <script src="assets/js/bootstrap.min.js"></script>
+
 
 
 <script>
 
+
 /* =====================================================
-   CART
+   CART VARIABLES
 ===================================================== */
 
 let cart = [];
+
 let total = 0;
 
 
+
 /* =====================================================
-   YOUR CLOUDFLARE ORDER SERVER
+   CLOUDFLARE ORDER SERVER
 ===================================================== */
 
 const ORDER_SERVER_URL =
 "https://shrill-leaf-26ee.ridwaanali147.workers.dev/orders";
 
 
+
 /* =====================================================
-   SEARCH
+   SEARCH PRODUCTS
 ===================================================== */
 
 function filterProducts() {
@@ -365,8 +483,9 @@ function filterProducts() {
 }
 
 
+
 /* =====================================================
-   LOAD PRODUCTS
+   LOAD PRODUCTS.TXT
 ===================================================== */
 
 fetch("products.txt")
@@ -385,6 +504,7 @@ fetch("products.txt")
 
 })
 
+
 .then(function(text) {
 
   const lines =
@@ -398,7 +518,7 @@ fetch("products.txt")
 
 
   let category = "";
-  let index = 0;
+
 
 
   lines.forEach(function(line) {
@@ -407,8 +527,11 @@ fetch("products.txt")
 
 
     if (!line) {
+
       return;
+
     }
+
 
 
     /* CATEGORY */
@@ -437,9 +560,11 @@ fetch("products.txt")
 
       `;
 
+
       return;
 
     }
+
 
 
     /* PRODUCT */
@@ -467,23 +592,32 @@ fetch("products.txt")
     }
 
 
-    const productCard =
+
+    /* PRODUCT CARD */
+
+    const card =
       document.createElement(
         "div"
       );
 
 
-    productCard.className =
+    card.className =
       "col-md-4 mb-4 product-card";
 
 
-    productCard.innerHTML = `
+
+    card.innerHTML = `
 
       <div class="card h-100 p-3 shadow-sm">
 
+
         <h4>
+
           ${escapeHTML(name)}
+
         </h4>
+
+
 
         <small
           class="badge badge-secondary align-self-start mb-2">
@@ -492,34 +626,53 @@ fetch("products.txt")
 
         </small>
 
+
+
         <p class="h5 text-primary mt-auto">
 
           ${
             price > 0
-              ? "AED " + price
-              : "Price on Request"
+
+            ? "AED " + price
+
+            : "Price on Request"
+
           }
 
         </p>
 
+
+
         <div class="form-group mb-2">
 
-          <label class="small text-muted mb-1">
+
+          <label
+            class="small text-muted mb-1">
 
             Quantity:
 
           </label>
 
+
+
           <input
+
             type="number"
+
             value="1"
+
             min="1"
-            class="form-control product-qty">
+
+            class="form-control product-quantity">
+
 
         </div>
 
+
+
         <button
-          class="btn btn-primary w-100 add-button">
+
+          class="btn btn-primary w-100 add-cart-button">
 
           <i class="fas fa-plus"></i>
 
@@ -527,21 +680,29 @@ fetch("products.txt")
 
         </button>
 
+
       </div>
 
     `;
 
 
-    const quantity =
-      productCard.querySelector(
-        ".product-qty"
+
+    /* QUANTITY */
+
+    const quantityInput =
+      card.querySelector(
+        ".product-quantity"
       );
 
+
+
+    /* ADD BUTTON */
 
     const addButton =
-      productCard.querySelector(
-        ".add-button"
+      card.querySelector(
+        ".add-cart-button"
       );
+
 
 
     addButton.addEventListener(
@@ -549,25 +710,29 @@ fetch("products.txt")
       function() {
 
         addToCart(
+
           name,
+
           price,
-          quantity.value
+
+          quantityInput.value
+
         );
 
       }
     );
 
 
+
     container.appendChild(
-      productCard
+      card
     );
 
-
-    index++;
 
   });
 
 })
+
 
 .catch(function(error) {
 
@@ -584,6 +749,11 @@ fetch("products.txt")
 
         Could not load products.txt.
 
+        <br><br>
+
+        Make sure products.txt is
+        in the same folder as cart.html.
+
       </div>
 
     </div>
@@ -591,6 +761,7 @@ fetch("products.txt")
   `;
 
 });
+
 
 
 /* =====================================================
@@ -602,6 +773,7 @@ function addToCart(
   price,
   quantity
 ) {
+
 
   quantity =
     parseInt(quantity);
@@ -621,6 +793,9 @@ function addToCart(
   }
 
 
+
+  /* CHECK IF ALREADY IN CART */
+
   const existing =
     cart.find(function(item) {
 
@@ -629,7 +804,9 @@ function addToCart(
     });
 
 
+
   if (existing) {
+
 
     existing.qty +=
       quantity;
@@ -638,26 +815,33 @@ function addToCart(
     existing.price +=
       price * quantity;
 
-  }
 
-  else {
+  } else {
+
 
     cart.push({
 
-      name: name,
+      name:
+        name,
 
-      qty: quantity,
+      qty:
+        quantity,
 
       price:
         price * quantity
 
     });
 
+
   }
+
 
 
   updateCart();
 
+
+
+  /* SMALL SUCCESS MESSAGE */
 
   const message =
     document.getElementById(
@@ -676,6 +860,7 @@ function addToCart(
   `;
 
 
+
   setTimeout(function() {
 
     message.innerHTML = "";
@@ -685,8 +870,9 @@ function addToCart(
 }
 
 
+
 /* =====================================================
-   REMOVE
+   REMOVE FROM CART
 ===================================================== */
 
 function removeFromCart(index) {
@@ -702,11 +888,13 @@ function removeFromCart(index) {
 }
 
 
+
 /* =====================================================
    UPDATE CART
 ===================================================== */
 
 function updateCart() {
+
 
   const list =
     document.getElementById(
@@ -722,12 +910,17 @@ function updateCart() {
 
   list.innerHTML = "";
 
+
   total = 0;
 
+
+
+  /* EMPTY */
 
   if (
     cart.length === 0
   ) {
+
 
     list.innerHTML = `
 
@@ -747,7 +940,8 @@ function updateCart() {
 
     document.getElementById(
       "total"
-    ).textContent = "0";
+    ).textContent =
+      "0";
 
 
     return;
@@ -755,67 +949,90 @@ function updateCart() {
   }
 
 
+
+  /* ENABLE SEND */
+
   sendButton.disabled =
     false;
 
 
-  cart.forEach(function(
-    item,
-    index
-  ) {
 
-    total +=
-      item.price;
+  /* DISPLAY ITEMS */
+
+  cart.forEach(
+    function(item, index) {
 
 
-    list.innerHTML += `
-
-      <li
-        class="list-group-item d-flex justify-content-between align-items-center">
-
-        <div>
-
-          <strong>
-
-            ${escapeHTML(item.name)}
-
-          </strong>
+      total +=
+        item.price;
 
 
-          <span
-            class="badge badge-pill badge-primary ml-2">
 
-            x${item.qty}
+      list.innerHTML += `
 
-          </span>
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center">
 
 
-          <div class="small text-muted">
+          <div>
 
-            AED
-            ${item.price.toFixed(2)}
+
+            <strong>
+
+              ${escapeHTML(item.name)}
+
+            </strong>
+
+
+
+            <span
+              class="badge badge-pill badge-primary ml-2">
+
+              x${item.qty}
+
+            </span>
+
+
+
+            <div
+              class="small text-muted">
+
+              AED
+              ${item.price.toFixed(2)}
+
+            </div>
+
 
           </div>
 
-        </div>
 
 
-        <button
-          class="btn btn-danger btn-sm"
-          onclick="removeFromCart(${index})">
+          <button
 
-          <i class="fas fa-trash"></i>
+            class="btn btn-danger btn-sm"
 
-          Remove
+            onclick="removeFromCart(${index})">
 
-        </button>
 
-      </li>
+            <i class="fas fa-trash"></i>
 
-    `;
+            Remove
 
-  });
 
+          </button>
+
+
+        </li>
+
+      `;
+
+
+    }
+  );
+
+
+
+  /* TOTAL */
 
   document.getElementById(
     "total"
@@ -825,11 +1042,15 @@ function updateCart() {
 }
 
 
+
 /* =====================================================
-   SEND ORDER TO CLOUDFLARE
+   SEND ORDER
 ===================================================== */
 
 async function sendOrder() {
+
+
+  /* CHECK CART */
 
   if (
     cart.length === 0
@@ -844,6 +1065,9 @@ async function sendOrder() {
   }
 
 
+
+  /* CUSTOMER NAME */
+
   const customerName =
     document
       .getElementById(
@@ -852,6 +1076,9 @@ async function sendOrder() {
       .value
       .trim();
 
+
+
+  /* PHONE */
 
   const customerPhone =
     document
@@ -862,6 +1089,9 @@ async function sendOrder() {
       .trim();
 
 
+
+  /* EMAIL */
+
   const customerEmail =
     document
       .getElementById(
@@ -871,6 +1101,9 @@ async function sendOrder() {
       .trim();
 
 
+
+  /* LOCATION */
+
   const location =
     document
       .getElementById(
@@ -879,6 +1112,9 @@ async function sendOrder() {
       .value
       .trim();
 
+
+
+  /* REQUIRED */
 
   if (!customerName) {
 
@@ -913,53 +1149,91 @@ async function sendOrder() {
   }
 
 
+
+  /* CREATE ORDER */
+
   const order = {
 
+
     orderId:
-      "RV-" + Date.now(),
+
+      "RV-" +
+
+      Date.now(),
+
+
 
     customerName:
+
       customerName,
 
+
+
     customerPhone:
+
       customerPhone,
 
+
+
     customerEmail:
+
       customerEmail,
 
+
+
     deliveryLocation:
+
       location,
 
+
+
     items:
-      cart.map(function(item) {
 
-        return {
+      cart.map(
+        function(item) {
 
-          name:
-            item.name,
+          return {
 
-          quantity:
-            item.qty,
+            name:
+              item.name,
 
-          unitPrice:
-            item.qty > 0
-              ? item.price / item.qty
+            quantity:
+              item.qty,
+
+            unitPrice:
+
+              item.qty > 0
+
+              ? item.price /
+                item.qty
+
               : 0
 
-        };
+          };
 
-      }),
+        }
+      ),
+
+
 
     total:
+
       Number(
         total.toFixed(2)
       ),
 
+
+
     createdAt:
-      new Date().toISOString()
+
+      new Date()
+        .toISOString()
 
   };
 
+
+
+  /* BUTTON */
 
   const button =
     document.getElementById(
@@ -973,22 +1247,37 @@ async function sendOrder() {
     );
 
 
+
   button.disabled =
     true;
+
 
 
   button.innerHTML =
     '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
 
+
+  message.innerHTML =
+    "";
+
+
+
+  /* SEND */
+
   try {
+
 
     const response =
       await fetch(
+
         ORDER_SERVER_URL,
+
         {
 
-          method: "POST",
+          method:
+            "POST",
+
 
           headers: {
 
@@ -997,11 +1286,16 @@ async function sendOrder() {
 
           },
 
+
           body:
-            JSON.stringify(order)
+            JSON.stringify(
+              order
+            )
 
         }
+
       );
+
 
 
     if (
@@ -1009,38 +1303,53 @@ async function sendOrder() {
     ) {
 
       throw new Error(
-        "Server error"
+        "Server error: " +
+        response.status
       );
 
     }
 
 
+
+    /* SUCCESS */
+
     message.innerHTML = `
 
-      <div class="alert alert-success">
+      <div
+        class="alert alert-success">
 
         <strong>
+
           ✓ Order sent successfully!
+
         </strong>
+
 
         <br>
 
+
         Order number:
-        ${escapeHTML(order.orderId)}
+
+        ${escapeHTML(
+          order.orderId
+        )}
 
       </div>
 
     `;
 
 
+
     /* CLEAR CART */
 
     cart = [];
 
+
     updateCart();
 
 
-    /* CLEAR CUSTOMER DATA */
+
+    /* CLEAR FIELDS */
 
     document.getElementById(
       "customer-name"
@@ -1061,40 +1370,57 @@ async function sendOrder() {
       "location"
     ).value = "";
 
+
   }
+
 
   catch(error) {
 
-    console.error(error);
+
+    console.error(
+      error
+    );
 
 
     message.innerHTML = `
 
-      <div class="alert alert-danger">
+      <div
+        class="alert alert-danger">
 
         <strong>
+
           ✕ Order could not be sent.
+
         </strong>
+
 
         <br>
 
+
         Please try again.
+
 
       </div>
 
     `;
 
+
   }
 
+
+
+  /* RESTORE BUTTON */
 
   button.disabled =
     false;
 
 
   button.innerHTML =
+
     '<i class="fas fa-paper-plane"></i> Send Order';
 
 }
+
 
 
 /* =====================================================
@@ -1103,45 +1429,56 @@ async function sendOrder() {
 
 function escapeHTML(value) {
 
+
   return String(
     value || ""
   )
+
 
   .replace(
     /&/g,
     "&amp;"
   )
 
+
   .replace(
     /</g,
     "&lt;"
   )
+
 
   .replace(
     />/g,
     "&gt;"
   )
 
+
   .replace(
     /"/g,
     "&quot;"
   )
+
 
   .replace(
     /'/g,
     "&#039;"
   );
 
+
 }
 
 
+
 /* =====================================================
-   START CART
+   START
 ===================================================== */
 
 updateCart();
 
+
 </script>
 
+
 </body>
+
 </html>
