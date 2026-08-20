@@ -7,7 +7,7 @@
 <title>Rapid Volt</title>
 <link rel="shortcut icon" type="image/png" href="assets/images/rapidvolt.png">
 
-<!-- FontAwesome CDN for icons -->
+<!-- FontAwesome -->
 <link rel="stylesheet" href="https://cloudflare.com">
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -16,9 +16,14 @@
 <body>
 
 <!-- ================= HEADER ================= -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
   <div class="container">
-    <a class="navbar-brand font-weight-bold" href="#">Rapid Volt</a>
+
+    <a class="navbar-brand font-weight-bold" href="#">
+      Rapid Volt
+    </a>
 
     <button
       class="navbar-toggler"
@@ -30,7 +35,9 @@
 
     </button>
 
-    <div class="collapse navbar-collapse" id="navMain">
+    <div
+      class="collapse navbar-collapse"
+      id="navMain">
 
       <ul class="navbar-nav ml-auto">
 
@@ -71,6 +78,7 @@
     </div>
 
   </div>
+
 </nav>
 
 
@@ -83,7 +91,7 @@
   </h2>
 
 
-  <!-- Search Bar Row -->
+  <!-- SEARCH -->
 
   <div class="row mb-4">
 
@@ -94,30 +102,31 @@
         id="search"
         class="form-control form-control-lg"
         placeholder="Search products..."
-        onkeyup="filterProducts()"
-      >
+        onkeyup="filterProducts()">
 
     </div>
 
   </div>
 
 
-  <!-- Dynamic Product List Container -->
+  <!-- PRODUCTS -->
 
   <div
     class="row"
     id="product-list">
+
   </div>
 
 
   <hr class="my-5">
 
 
-  <!-- ================= CART SECTION ================= -->
+  <!-- ================= CART ================= -->
 
   <div class="row">
 
-    <div class="col-md-8 mx-auto bg-light p-4 rounded shadow-sm">
+    <div
+      class="col-md-8 mx-auto bg-light p-4 rounded shadow-sm">
 
       <h4 class="mb-3">
 
@@ -132,12 +141,10 @@
         id="cart-items"
         class="list-group mb-3">
 
-        <!-- Cart items render here -->
-
       </ul>
 
 
-      <!-- DELIVERY LOCATION INPUT FIELD -->
+      <!-- LOCATION -->
 
       <div class="form-group mb-3">
 
@@ -149,19 +156,17 @@
 
         </label>
 
-
         <textarea
           id="location"
           class="form-control"
           rows="2"
           placeholder="Type your delivery location or warehouse address here..."
-          onkeyup="updateCart()"
-        ></textarea>
+          onkeyup="updateCart()"></textarea>
 
       </div>
 
 
-      <!-- CUSTOMER NAME -->
+      <!-- NAME -->
 
       <div class="form-group mb-3">
 
@@ -173,18 +178,16 @@
 
         </label>
 
-
         <input
           type="text"
           id="customer-name"
           class="form-control"
-          placeholder="Enter your name"
-        >
+          placeholder="Enter your name">
 
       </div>
 
 
-      <!-- CUSTOMER PHONE -->
+      <!-- PHONE -->
 
       <div class="form-group mb-3">
 
@@ -196,18 +199,16 @@
 
         </label>
 
-
         <input
           type="tel"
           id="customer-phone"
           class="form-control"
-          placeholder="Enter your phone number"
-        >
+          placeholder="Enter your phone number">
 
       </div>
 
 
-      <!-- CUSTOMER EMAIL -->
+      <!-- EMAIL -->
 
       <div class="form-group mb-3">
 
@@ -219,13 +220,11 @@
 
         </label>
 
-
         <input
           type="email"
           id="customer-email"
           class="form-control"
-          placeholder="Enter your email"
-        >
+          placeholder="Enter your email">
 
       </div>
 
@@ -249,7 +248,7 @@
       </div>
 
 
-      <!-- ================= SEND ORDER ================= -->
+      <!-- SEND ORDER -->
 
       <div class="row">
 
@@ -272,13 +271,13 @@
       </div>
 
 
-      <!-- ORDER MESSAGE -->
+      <!-- MESSAGE -->
 
       <div
         id="order-message"
         class="text-center mt-3">
-      </div>
 
+      </div>
 
     </div>
 
@@ -297,7 +296,7 @@
 </footer>
 
 
-<!-- JavaScript Assets -->
+<!-- JAVASCRIPT -->
 
 <script src="assets/js/jquery-1.12.0.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -310,34 +309,19 @@
 ===================================================== */
 
 let cart = [];
-
 let total = 0;
 
 
 /* =====================================================
-   ORDER SERVER
+   YOUR CLOUDFLARE ORDER SERVER
 ===================================================== */
 
-/*
- IMPORTANT:
-
- Replace this with the URL of your order server.
-
- Example:
-
- https://your-order-server.example/orders
-
- DO NOT put your APK's local IP here.
-
- The website needs a public HTTPS endpoint.
-*/
-
 const ORDER_SERVER_URL =
-    "https://shrill-leaf-26ee.ridwaanali147.workers.dev/";
+"https://shrill-leaf-26ee.ridwaanali147.workers.dev/orders";
 
 
 /* =====================================================
-   FILTER PRODUCTS
+   SEARCH
 ===================================================== */
 
 function filterProducts() {
@@ -355,7 +339,7 @@ function filterProducts() {
     );
 
 
-  cards.forEach(card => {
+  cards.forEach(function(card) {
 
     const name =
       card
@@ -364,10 +348,17 @@ function filterProducts() {
         .toLowerCase();
 
 
-    card.style.display =
+    if (
       name.includes(search)
-        ? "block"
-        : "none";
+    ) {
+
+      card.style.display = "";
+
+    } else {
+
+      card.style.display = "none";
+
+    }
 
   });
 
@@ -380,169 +371,226 @@ function filterProducts() {
 
 fetch("products.txt")
 
-  .then(res => res.text())
+.then(function(response) {
 
-  .then(text => {
+  if (!response.ok) {
 
-    const lines =
-      text.split(/\r?\n/);
+    throw new Error(
+      "products.txt could not be loaded"
+    );
 
+  }
 
-    const container =
-      document.getElementById(
-        "product-list"
-      );
+  return response.text();
 
+})
 
-    let category = "";
+.then(function(text) {
 
-    let index = 0;
-
-
-    lines.forEach(line => {
-
-      line = line.trim();
+  const lines =
+    text.split(/\r?\n/);
 
 
-      if (!line)
-        return;
+  const container =
+    document.getElementById(
+      "product-list"
+    );
 
 
-      /* CATEGORY */
-
-      if (
-        line.startsWith("#")
-      ) {
-
-        category =
-          line
-            .replace("#", "")
-            .trim();
+  let category = "";
+  let index = 0;
 
 
-        container.innerHTML += `
+  lines.forEach(function(line) {
 
-          <div class="col-12 mt-4 mb-2">
-
-            <h3 class="border-bottom pb-2">
-
-              ${escapeHTML(category)}
-
-            </h3>
-
-          </div>
-
-        `;
-
-        return;
-
-      }
+    line = line.trim();
 
 
-      /* PRODUCT */
-
-      const parts =
-        line.split("|");
-
-
-      const name =
-        parts[0].trim();
+    if (!line) {
+      return;
+    }
 
 
-      const price =
-        parts.length >= 2
-          ? parseFloat(
-              parts[1].trim()
-            )
-          : 0;
+    /* CATEGORY */
+
+    if (
+      line.startsWith("#")
+    ) {
+
+      category =
+        line
+          .substring(1)
+          .trim();
 
 
       container.innerHTML += `
 
-        <div class="col-md-4 mb-4 product-card">
+        <div class="col-12 mt-4 mb-2">
 
-          <div class="card h-100 p-3 shadow-sm">
+          <h3 class="border-bottom pb-2">
 
-            <h4>
-              ${escapeHTML(name)}
-            </h4>
+            ${escapeHTML(category)}
 
-
-            <small
-              class="badge badge-secondary align-self-start mb-2">
-
-              ${escapeHTML(category)}
-
-            </small>
-
-
-            <p class="h5 text-primary mt-auto">
-
-              ${
-                price > 0
-                  ? "AED " + price
-                  : "Price on Request"
-              }
-
-            </p>
-
-
-            <div class="form-group mb-2">
-
-              <label class="small text-muted mb-1">
-
-                Quantity:
-
-              </label>
-
-
-              <input
-                type="number"
-                id="qty${index}"
-                value="1"
-                min="1"
-                class="form-control"
-              >
-
-            </div>
-
-
-            <button
-              class="btn btn-primary w-100"
-              onclick="addToCart(
-                ${JSON.stringify(name)},
-                ${price},
-                document.getElementById('qty${index}').value
-              )">
-
-              <i class="fas fa-plus"></i>
-
-              Add to Cart
-
-            </button>
-
-          </div>
+          </h3>
 
         </div>
 
       `;
 
+      return;
 
-      index++;
+    }
 
-    });
 
-  })
+    /* PRODUCT */
 
-  .catch(error => {
+    const parts =
+      line.split("|");
 
-    console.error(
-      "Could not load products:",
-      error
+
+    const name =
+      parts[0].trim();
+
+
+    let price = 0;
+
+
+    if (
+      parts.length >= 2
+    ) {
+
+      price =
+        parseFloat(
+          parts[1].trim()
+        );
+
+    }
+
+
+    const productCard =
+      document.createElement(
+        "div"
+      );
+
+
+    productCard.className =
+      "col-md-4 mb-4 product-card";
+
+
+    productCard.innerHTML = `
+
+      <div class="card h-100 p-3 shadow-sm">
+
+        <h4>
+          ${escapeHTML(name)}
+        </h4>
+
+        <small
+          class="badge badge-secondary align-self-start mb-2">
+
+          ${escapeHTML(category)}
+
+        </small>
+
+        <p class="h5 text-primary mt-auto">
+
+          ${
+            price > 0
+              ? "AED " + price
+              : "Price on Request"
+          }
+
+        </p>
+
+        <div class="form-group mb-2">
+
+          <label class="small text-muted mb-1">
+
+            Quantity:
+
+          </label>
+
+          <input
+            type="number"
+            value="1"
+            min="1"
+            class="form-control product-qty">
+
+        </div>
+
+        <button
+          class="btn btn-primary w-100 add-button">
+
+          <i class="fas fa-plus"></i>
+
+          Add to Cart
+
+        </button>
+
+      </div>
+
+    `;
+
+
+    const quantity =
+      productCard.querySelector(
+        ".product-qty"
+      );
+
+
+    const addButton =
+      productCard.querySelector(
+        ".add-button"
+      );
+
+
+    addButton.addEventListener(
+      "click",
+      function() {
+
+        addToCart(
+          name,
+          price,
+          quantity.value
+        );
+
+      }
     );
+
+
+    container.appendChild(
+      productCard
+    );
+
+
+    index++;
 
   });
 
+})
+
+.catch(function(error) {
+
+  console.error(error);
+
+
+  document.getElementById(
+    "product-list"
+  ).innerHTML = `
+
+    <div class="col-12">
+
+      <div class="alert alert-danger">
+
+        Could not load products.txt.
+
+      </div>
+
+    </div>
+
+  `;
+
+});
 
 
 /* =====================================================
@@ -552,35 +600,43 @@ fetch("products.txt")
 function addToCart(
   name,
   price,
-  qty
+  quantity
 ) {
 
-  qty =
-    parseInt(qty);
+  quantity =
+    parseInt(quantity);
 
 
   if (
-    isNaN(qty) ||
-    qty < 1
+    isNaN(quantity) ||
+    quantity < 1
   ) {
+
+    alert(
+      "Please enter a valid quantity."
+    );
 
     return;
 
   }
 
 
-  const item =
-    cart.find(
-      p => p.name === name
-    );
+  const existing =
+    cart.find(function(item) {
+
+      return item.name === name;
+
+    });
 
 
-  if (item) {
+  if (existing) {
 
-    item.qty += qty;
+    existing.qty +=
+      quantity;
 
-    item.price +=
-      price * qty;
+
+    existing.price +=
+      price * quantity;
 
   }
 
@@ -590,10 +646,10 @@ function addToCart(
 
       name: name,
 
-      qty: qty,
+      qty: quantity,
 
       price:
-        price * qty
+        price * quantity
 
     });
 
@@ -602,12 +658,35 @@ function addToCart(
 
   updateCart();
 
+
+  const message =
+    document.getElementById(
+      "order-message"
+    );
+
+
+  message.innerHTML = `
+
+    <div class="alert alert-success">
+
+      ✓ Added to cart
+
+    </div>
+
+  `;
+
+
+  setTimeout(function() {
+
+    message.innerHTML = "";
+
+  }, 1500);
+
 }
 
 
-
 /* =====================================================
-   REMOVE FROM CART
+   REMOVE
 ===================================================== */
 
 function removeFromCart(index) {
@@ -621,7 +700,6 @@ function removeFromCart(index) {
   updateCart();
 
 }
-
 
 
 /* =====================================================
@@ -642,21 +720,10 @@ function updateCart() {
     );
 
 
-  const userLocation =
-    document
-      .getElementById("location")
-      .value
-      .trim();
-
-
-  list.innerHTML =
-    "";
-
+  list.innerHTML = "";
 
   total = 0;
 
-
-  /* EMPTY CART */
 
   if (
     cart.length === 0
@@ -678,9 +745,9 @@ function updateCart() {
       true;
 
 
-    document
-      .getElementById("total")
-      .textContent = 0;
+    document.getElementById(
+      "total"
+    ).textContent = "0";
 
 
     return;
@@ -688,95 +755,81 @@ function updateCart() {
   }
 
 
-  /* CART HAS ITEMS */
-
   sendButton.disabled =
     false;
 
 
-  cart.forEach(
-    (item, i) => {
+  cart.forEach(function(
+    item,
+    index
+  ) {
 
-      total +=
-        item.price;
-
-
-      list.innerHTML += `
-
-        <li
-          class="list-group-item d-flex justify-content-between align-items-center">
-
-          <div>
-
-            <strong>
-              ${escapeHTML(item.name)}
-            </strong>
+    total +=
+      item.price;
 
 
-            <span
-              class="badge badge-pill badge-primary ml-2">
+    list.innerHTML += `
 
-              x${item.qty}
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center">
 
-            </span>
+        <div>
+
+          <strong>
+
+            ${escapeHTML(item.name)}
+
+          </strong>
 
 
-            <div class="small text-muted">
+          <span
+            class="badge badge-pill badge-primary ml-2">
 
-              AED
-              ${item.price.toFixed(2)}
+            x${item.qty}
 
-            </div>
+          </span>
+
+
+          <div class="small text-muted">
+
+            AED
+            ${item.price.toFixed(2)}
 
           </div>
 
-
-          <button
-            class="btn btn-danger btn-sm"
-            onclick="removeFromCart(${i})">
-
-            <i class="fas fa-trash"></i>
-
-            Remove
-
-          </button>
-
-        </li>
-
-      `;
-
-    }
-  );
+        </div>
 
 
-  document
-    .getElementById("total")
-    .textContent =
-      total.toFixed(2);
+        <button
+          class="btn btn-danger btn-sm"
+          onclick="removeFromCart(${index})">
+
+          <i class="fas fa-trash"></i>
+
+          Remove
+
+        </button>
+
+      </li>
+
+    `;
+
+  });
+
+
+  document.getElementById(
+    "total"
+  ).textContent =
+    total.toFixed(2);
 
 }
 
 
-
 /* =====================================================
-   SEND ORDER
+   SEND ORDER TO CLOUDFLARE
 ===================================================== */
 
 async function sendOrder() {
-
-  const button =
-    document.getElementById(
-      "send-order-button"
-    );
-
-
-  const message =
-    document.getElementById(
-      "order-message"
-    );
-
-
-  /* CHECK CART */
 
   if (
     cart.length === 0
@@ -790,8 +843,6 @@ async function sendOrder() {
 
   }
 
-
-  /* CUSTOMER */
 
   const customerName =
     document
@@ -829,9 +880,6 @@ async function sendOrder() {
       .trim();
 
 
-
-  /* REQUIRED */
-
   if (!customerName) {
 
     alert(
@@ -865,67 +913,65 @@ async function sendOrder() {
   }
 
 
-
-  /* CREATE ORDER */
-
   const order = {
 
     orderId:
-      "RV-" +
-      Date.now(),
-
+      "RV-" + Date.now(),
 
     customerName:
       customerName,
 
-
     customerPhone:
       customerPhone,
-
 
     customerEmail:
       customerEmail,
 
-
     deliveryLocation:
       location,
 
-
     items:
-      cart.map(item => ({
+      cart.map(function(item) {
 
-        name:
-          item.name,
+        return {
 
+          name:
+            item.name,
 
-        quantity:
-          item.qty,
+          quantity:
+            item.qty,
 
+          unitPrice:
+            item.qty > 0
+              ? item.price / item.qty
+              : 0
 
-        unitPrice:
-          item.qty > 0
-            ? item.price /
-              item.qty
-            : 0
+        };
 
-      })),
-
+      }),
 
     total:
       Number(
         total.toFixed(2)
       ),
 
-
     createdAt:
-      new Date()
-        .toISOString()
+      new Date().toISOString()
 
   };
 
 
+  const button =
+    document.getElementById(
+      "send-order-button"
+    );
 
-  /* DISABLE BUTTON */
+
+  const message =
+    document.getElementById(
+      "order-message"
+    );
+
 
   button.disabled =
     true;
@@ -935,26 +981,14 @@ async function sendOrder() {
     '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
 
-  message.innerHTML =
-    "";
-
-
-
   try {
-
-
-    /*
-     SEND TO YOUR SERVER
-    */
 
     const response =
       await fetch(
         ORDER_SERVER_URL,
         {
 
-          method:
-            "POST",
-
+          method: "POST",
 
           headers: {
 
@@ -963,15 +997,11 @@ async function sendOrder() {
 
           },
 
-
           body:
-            JSON.stringify(
-              order
-            )
+            JSON.stringify(order)
 
         }
       );
-
 
 
     if (
@@ -979,15 +1009,11 @@ async function sendOrder() {
     ) {
 
       throw new Error(
-        "Server returned " +
-        response.status
+        "Server error"
       );
 
     }
 
-
-
-    /* SUCCESS */
 
     message.innerHTML = `
 
@@ -1007,53 +1033,39 @@ async function sendOrder() {
     `;
 
 
-    /* EMPTY CART */
+    /* CLEAR CART */
 
     cart = [];
-
 
     updateCart();
 
 
-    /* CLEAR CUSTOMER FIELDS */
+    /* CLEAR CUSTOMER DATA */
 
-    document
-      .getElementById(
-        "customer-name"
-      )
-      .value = "";
+    document.getElementById(
+      "customer-name"
+    ).value = "";
 
 
-    document
-      .getElementById(
-        "customer-phone"
-      )
-      .value = "";
+    document.getElementById(
+      "customer-phone"
+    ).value = "";
 
 
-    document
-      .getElementById(
-        "customer-email"
-      )
-      .value = "";
+    document.getElementById(
+      "customer-email"
+    ).value = "";
 
 
-    document
-      .getElementById(
-        "location"
-      )
-      .value = "";
-
+    document.getElementById(
+      "location"
+    ).value = "";
 
   }
 
-
   catch(error) {
 
-
-    console.error(
-      error
-    );
+    console.error(error);
 
 
     message.innerHTML = `
@@ -1072,24 +1084,17 @@ async function sendOrder() {
 
     `;
 
-
   }
 
 
-  finally {
+  button.disabled =
+    false;
 
 
-    button.disabled =
-      false;
-
-
-    button.innerHTML =
-      '<i class="fas fa-paper-plane"></i> Send Order';
-
-  }
+  button.innerHTML =
+    '<i class="fas fa-paper-plane"></i> Send Order';
 
 }
-
 
 
 /* =====================================================
@@ -1131,7 +1136,7 @@ function escapeHTML(value) {
 
 
 /* =====================================================
-   INITIAL CART
+   START CART
 ===================================================== */
 
 updateCart();
