@@ -1,0 +1,97 @@
+{
+  "cable": {
+    "key": "cable",
+    "triangles": 19496,
+    "dimensions_mm": [
+      160.5,
+      13.4,
+      13.4
+    ],
+    "files": {
+      "glb": "cable.glb",
+      "fbx": "cable.fbx",
+      "stl": "cable.stl"
+    },
+    "sizes": {
+      "glb": 645812,
+      "fbx": 630588,
+      "stl": 974884
+    }
+  },
+  "coupler": {
+    "key": "coupler",
+    "triangles": 5980,
+    "dimensions_mm": [
+      300.0,
+      80.0,
+      3.0
+    ],
+    "files": {
+      "glb": "coupler.glb",
+      "fbx": "coupler.fbx",
+      "stl": "coupler.stl"
+    },
+    "sizes": {
+      "glb": 297480,
+      "fbx": 90780,
+      "stl": 299084
+    }
+  },
+  "saddle": {
+    "key": "saddle",
+    "triangles": 3888,
+    "dimensions_mm": [
+      52.0,
+      24.0,
+      24.0
+    ],
+    "files": {
+      "glb": "saddle.glb",
+      "fbx": "saddle.fbx",
+      "stl": "saddle.stl"
+    },
+    "sizes": {
+      "glb": 90696,
+      "fbx": 89468,
+      "stl": 194484
+    }
+  },
+  "gland": {
+    "key": "gland",
+    "triangles": 7316,
+    "dimensions_mm": [
+      133.5,
+      121.2,
+      170.0
+    ],
+    "files": {
+      "glb": "gland.glb",
+      "fbx": "gland.fbx",
+      "stl": "gland.stl"
+    },
+    "sizes": {
+      "glb": 251312,
+      "fbx": 221500,
+      "stl": 365884
+    }
+  },
+  "downlight": {
+    "key": "downlight",
+    "triangles": 63126,
+    "dimensions_mm": [
+      132.1,
+      114.9,
+      46.7
+    ],
+    "files": {
+      "glb": "downlight.glb",
+      "fbx": "downlight.fbx",
+      "stl": "downlight.stl"
+    },
+    "sizes": {
+      "glb": 1847984,
+      "fbx": 1774780,
+      "stl": 3156384
+    }
+  }
+}
