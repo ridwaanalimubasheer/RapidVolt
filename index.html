@@ -19,6 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/rv.css">
+  <link rel="stylesheet" href="assets/css/rv-lusion.css">
 
   <script type="application/ld+json">
   {
@@ -36,15 +37,32 @@
 
   <!-- preloader -->
   <div class="preloader" id="preloader" aria-hidden="true">
-    <div class="pre-top">
-      <span class="mono">Rapid Volt — Dubai, UAE</span>
-      <span class="mono">Electrical supply · Dubai</span>
+    <div class="pre-panels" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="pre-grid" aria-hidden="true"></div>
+    <div class="pre-glow" aria-hidden="true"></div>
+
+    <div class="pre-top mono">
+      <span class="pre-brand">Rapid Volt — Dubai, UAE</span>
+      <span class="pre-status" id="pre-status"><i></i>Initialising</span>
     </div>
+
     <div class="pre-center">
-      <div class="pre-num" id="pre-num">00</div>
-      <div class="pre-label">Loading five real products<br>FBX · STL · GLB</div>
+      <svg class="pre-mark" id="pre-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M13.5 2 4 13.2h6.1L9.4 22 20 10.4h-6.3L13.5 2Z"/>
+      </svg>
+      <div class="pre-word" id="pre-word">Cable</div>
     </div>
-    <div class="pre-bar"><i id="pre-bar"></i></div>
+
+    <div class="pre-bottom">
+      <div class="pre-read">
+        <div class="pre-count"><span id="pre-num">000</span><i>%</i></div>
+        <div class="pre-meta mono">
+          <span>FBX · STL · GLB</span>
+          <span>Five real products · real geometry</span>
+        </div>
+      </div>
+      <div class="pre-bar"><i id="pre-bar"></i></div>
+    </div>
   </div>
 
   <!-- custom cursor -->
@@ -162,9 +180,9 @@
         </div>
 
         <div class="stats">
-          <div class="stat reveal"><strong>05</strong><span>Products in 3D</span></div>
-          <div class="stat reveal"><strong>100%</strong><span>Real geometry</span></div>
-          <div class="stat reveal"><strong>03</strong><span>Download formats</span></div>
+          <div class="stat reveal"><strong data-lx-count="5" data-lx-pad="2">05</strong><span>Products in 3D</span></div>
+          <div class="stat reveal"><strong data-lx-count="100" data-lx-suffix="%">100%</strong><span>Real geometry</span></div>
+          <div class="stat reveal"><strong data-lx-count="3" data-lx-pad="2">03</strong><span>Download formats</span></div>
         </div>
       </div>
     </section>
@@ -219,7 +237,7 @@
             <span class="mono">02 / Selected products</span>
             <span class="mono">01 — 05</span>
           </div>
-          <h2 class="display">Five products,<br><em>modelled in full.</em></h2>
+          <h2 class="display" data-lx-reveal="mask">Five products,<br><em>modelled in full.</em></h2>
         </div>
         <p>Open any card for the full-screen model. Orbit it, strip it to wireframe, or download the FBX and STL and keep it.</p>
       </div>
@@ -304,6 +322,77 @@
       <p class="range-note">Every model is built from real dimensions and exported from the same source file. The full catalogue — cable glands, lugs, downlights, conduit and consumables — is in the shop.</p>
     </section>
 
+    <!-- featured in 3D (lusion-style pinned horizontal gallery) -->
+    <section class="rv-lx-featured" id="featured" aria-label="Featured products in 3D">
+      <div class="rv-lx-featured__head">
+        <div>
+          <div class="section-top" style="border-top:0;padding-top:0;margin-bottom:18px">
+            <span class="mono">Featured / in 3D</span>
+            <span class="mono">Drag-free · scroll to advance</span>
+          </div>
+          <h2 class="rv-lx-featured__title" data-lx-reveal="mask">Five products,<br><em>one scroll.</em></h2>
+        </div>
+        <span class="rv-lx-featured__hint"><i></i>Scroll to explore</span>
+      </div>
+
+      <div class="rv-lx-featured__pin">
+        <div class="rv-lx-featured__track">
+          <article class="rv-lx-fpanel" data-lx-tilt="4">
+            <span class="rv-lx-fpanel__num">01</span>
+            <span class="rv-lx-fpanel__cat">Cabling</span>
+            <div class="rv-lx-fpanel__media"><img src="assets/img/renders/cable.png" alt="1CX16 armoured cable" loading="lazy"></div>
+            <div class="rv-lx-fpanel__foot">
+              <div><h3>1CX16 Armoured Cable</h3><p>A 1 kV single-core armoured cable, cut open layer by layer.</p></div>
+              <button class="rv-lx-fpanel__open" type="button" data-viewer="cable">View 3D <span>&#8599;</span></button>
+            </div>
+          </article>
+
+          <article class="rv-lx-fpanel" data-lx-tilt="4">
+            <span class="rv-lx-fpanel__num">02</span>
+            <span class="rv-lx-fpanel__cat">Containment</span>
+            <div class="rv-lx-fpanel__media"><img src="assets/img/renders/coupler.png" alt="Cable tray joint coupler" loading="lazy"></div>
+            <div class="rv-lx-fpanel__foot">
+              <div><h3>Tray Joint Coupler</h3><p>A twelve-slot hot-dip galvanised joint plate for straight tray runs.</p></div>
+              <button class="rv-lx-fpanel__open" type="button" data-viewer="coupler">View 3D <span>&#8599;</span></button>
+            </div>
+          </article>
+
+          <article class="rv-lx-fpanel" data-lx-tilt="4">
+            <span class="rv-lx-fpanel__num">03</span>
+            <span class="rv-lx-fpanel__cat">Fixings</span>
+            <div class="rv-lx-fpanel__media"><img src="assets/img/renders/saddle.png" alt="20 mm GI saddle" loading="lazy"></div>
+            <div class="rv-lx-fpanel__foot">
+              <div><h3>20 mm GI Saddle</h3><p>A pressed, zinc-passivated saddle that holds conduit cleanly.</p></div>
+              <button class="rv-lx-fpanel__open" type="button" data-viewer="saddle">View 3D <span>&#8599;</span></button>
+            </div>
+          </article>
+
+          <article class="rv-lx-fpanel" data-lx-tilt="4">
+            <span class="rv-lx-fpanel__num">04</span>
+            <span class="rv-lx-fpanel__cat">Cabling</span>
+            <div class="rv-lx-fpanel__media"><img src="assets/img/renders/gland.png" alt="63L BW cable gland" loading="lazy"></div>
+            <div class="rv-lx-fpanel__foot">
+              <div><h3>63L BW Cable Gland</h3><p>A brass weatherproof gland, modelled part by part to IP68.</p></div>
+              <button class="rv-lx-fpanel__open" type="button" data-viewer="gland">View 3D <span>&#8599;</span></button>
+            </div>
+          </article>
+
+          <article class="rv-lx-fpanel" data-lx-tilt="4">
+            <span class="rv-lx-fpanel__num">05</span>
+            <span class="rv-lx-fpanel__cat">Lighting</span>
+            <div class="rv-lx-fpanel__media"><img src="assets/img/renders/downlight.png" alt="Nitalite LED downlight" loading="lazy"></div>
+            <div class="rv-lx-fpanel__foot">
+              <div><h3>Nitalite LED Downlight</h3><p>A 15 W die-cast downlight with a deep finned heatsink.</p></div>
+              <button class="rv-lx-fpanel__open" type="button" data-viewer="downlight">View 3D <span>&#8599;</span></button>
+            </div>
+          </article>
+        </div>
+
+        <div class="rv-lx-featured__rail" aria-hidden="true"><i></i></div>
+        <div class="rv-lx-featured__count mono" aria-hidden="true"><b>01</b> / 05</div>
+      </div>
+    </section>
+
     <!-- capabilities -->
     <section class="capabilities" id="capabilities">
       <div class="cap-head">
@@ -312,7 +401,7 @@
             <span class="mono">03 / Capabilities</span>
             <span class="mono">Supply + specification</span>
           </div>
-          <h2 class="display">From the tray<br>to the <em>last metre.</em></h2>
+          <h2 class="display" data-lx-reveal="mask">From the tray<br>to the <em>last metre.</em></h2>
         </div>
         <p>One supplier for the parts that carry power, fix it in place and finish the ceiling. We quote, source and deliver across the Emirates.</p>
       </div>
@@ -352,7 +441,7 @@
     <!-- manifesto / studio -->
     <section class="manifesto" id="studio">
       <div class="manifesto-media">
-        <img src="assets/img/renders/downlight.png" alt="Nitalite LED downlight, 3D render" loading="lazy">
+        <img src="assets/img/renders/downlight.png" alt="Nitalite LED downlight, 3D render" loading="lazy" data-lx-parallax="0.06">
       </div>
       <div class="manifesto-copy">
         <span class="eyebrow">04 / The studio</span>
@@ -371,7 +460,7 @@
     <section class="cta">
       <div class="cta-glow" aria-hidden="true"></div>
       <span class="eyebrow">05 / Start an order</span>
-      <h2 class="cta-title">Let's build<br><em>the run.</em></h2>
+      <h2 class="cta-title" data-lx-reveal="mask">Let's build<br><em>the run.</em></h2>
       <div class="cta-actions">
         <a class="cta-circle" href="https://wa.me/971555778653?text=Hello%20Rapid%20Volt%2C%20I%27d%20like%20to%20place%20an%20order" target="_blank" rel="noopener">
           WhatsApp <i>&#8599;</i>
@@ -492,6 +581,7 @@
   </script>
   <script src="assets/vendor/lenis.min.js"></script>
   <script src="assets/js/rv-data.js"></script>
+  <script src="assets/js/rv-lusion.js" defer></script>
   <script type="module" src="assets/js/rv-site.js"></script>
 </body>
 </html>

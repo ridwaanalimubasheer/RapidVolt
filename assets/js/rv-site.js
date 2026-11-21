@@ -55,51 +55,120 @@ function initPreloader() {
   const pre = $('#preloader');
   const num = $('#pre-num');
   const bar = $('#pre-bar');
-  const skip = new URLSearchParams(window.location.search).has('nopreload');
-  if (!pre) {
+  const statusEl = $('#pre-status');
+  const wordEl = $('#pre-word');
+  const params = new URLSearchParams(window.location.search);
+  const skip = params.has('nopreload');
+
+  const revealPage = () => {
     document.body.classList.remove('is-loading');
     document.body.classList.add('is-loaded');
     startLenis();
+    if (lenis) lenis.resize();
+  };
+
+  if (!pre) {
+    revealPage();
     return;
   }
 
-  if (skip) {
+  const hidePre = () => {
+    pre.setAttribute('aria-hidden', 'true');
+    pre.style.display = 'none';
+    try { sessionStorage.setItem('rv-loaded', '1'); } catch (e) {}
+  };
+
+  // reduced-motion or explicit skip: clear it quickly, no theatrics.
+  if (skip || reduced) {
     if (num) num.textContent = '100';
     if (bar) bar.style.width = '100%';
-    document.body.classList.remove('is-loading');
-    document.body.classList.add('is-loaded');
+    if (statusEl) statusEl.innerHTML = '<i></i>Ready';
+    revealPage();
     pre.classList.add('is-done');
-    pre.style.display = 'none';
-    startLenis();
+    hidePre();
     return;
   }
 
-  const duration = reduced ? 220 : 1350;
+  // first visit in a session gets the full sequence; repeat visits a short one
+  let seen = false;
+  try { seen = sessionStorage.getItem('rv-loaded') === '1'; } catch (e) {}
+
+  const words = ['Cable', 'Containment', 'Fixings', 'Lighting'];
+  const setWord = (w) => {
+    if (!wordEl) return;
+    wordEl.classList.add('is-swapping');
+    setTimeout(() => {
+      wordEl.textContent = w;
+      wordEl.classList.remove('is-swapping');
+    }, 200);
+  };
+  let wordIndex = 0;
+  const wordTimer = setInterval(() => {
+    wordIndex = (wordIndex + 1) % words.length;
+    setWord(words[wordIndex]);
+  }, seen ? 100000 : 480);
+
+  // track real page readiness so the bar never "completes" over a blank load
+  let pageReady = false;
+  const onLoad = () => { pageReady = true; };
+  if (document.readyState === 'complete') pageReady = true;
+  else window.addEventListener('load', onLoad, { once: true });
+  // failsafe: never trap the visitor behind the loader
+  const failsafe = setTimeout(() => { pageReady = true; }, 6500);
+
+  const setStatus = (value) => {
+    if (!statusEl) return;
+    const label = value < 34 ? 'Initialising WebGL'
+      : value < 72 ? 'Measuring geometry'
+      : value < 100 ? 'Loading five models'
+      : 'Ready';
+    if (statusEl.innerHTML !== '<i></i>' + label) statusEl.innerHTML = '<i></i>' + label;
+  };
+
+  const duration = seen ? 1000 : 2600;
   const start = performance.now();
+  let finishing = false;
+
+  const exit = () => {
+    if (finishing) return;
+    finishing = true;
+    clearInterval(wordTimer);
+    clearTimeout(failsafe);
+    if (num) num.textContent = '100';
+    if (bar) bar.style.width = '100%';
+    setStatus(100);
+    if (wordEl) { wordEl.classList.remove('is-swapping'); wordEl.textContent = 'Ready'; }
+
+    // brief hold on 100%, then lift the curtain
+    setTimeout(() => {
+      // trigger the hero reveal now so it animates in behind the lifting panels
+      document.body.classList.add('is-loaded');
+      pre.classList.add('is-exiting');
+      // panels: 0.9s + up to 0.24s stagger; unlock scroll once they clear
+      setTimeout(() => {
+        document.body.classList.remove('is-loading');
+        startLenis();
+        if (lenis) lenis.resize();
+        pre.classList.add('is-done');
+        hidePre();
+      }, 1150);
+    }, 380);
+  };
 
   const tick = (now) => {
     const t = clamp((now - start) / duration, 0, 1);
-    const eased = 1 - Math.pow(1 - t, 3);
-    const value = Math.round(eased * 100);
-    if (num) num.textContent = String(value).padStart(2, '0');
-    if (bar) bar.style.width = `${eased * 100}%`;
-    if (t < 1) {
+    const eased = 1 - Math.pow(1 - t, 2.4);
+    let value = Math.round(eased * 100);
+    if (!pageReady && value >= 99) value = 99; // hold at 99 until assets are in
+    if (num) num.textContent = String(value).padStart(3, '0');
+    if (bar) bar.style.width = value + '%';
+    setStatus(value);
+
+    if (t < 1 || !pageReady) {
       requestAnimationFrame(tick);
       return;
     }
-    finish();
-  };
-
-  const finish = () => {
-    document.body.classList.remove('is-loading');
-    document.body.classList.add('is-loaded');
-    pre.classList.add('is-done');
-    startLenis();
-    if (lenis) lenis.resize();
-    setTimeout(() => {
-      pre.setAttribute('aria-hidden', 'true');
-      pre.style.display = 'none';
-    }, reduced ? 50 : 1200);
+    exit();
   };
 
   requestAnimationFrame(tick);
